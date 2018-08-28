@@ -1,50 +1,56 @@
 package com.lookup.domain;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 public class UserPrincipal implements UserDetails {
 
-    private User user;
+    private String name;
+    private String password;
+    private List<SimpleGrantedAuthority> authorities;
 
-    public UserPrincipal(User user) {
-        this.user = user;
+    public UserPrincipal(Uuser uuser, List<SimpleGrantedAuthority> authorities) {
+        this.name = uuser.getName();
+        this.password = uuser.getPassword();
+        this.authorities = authorities;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return name;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

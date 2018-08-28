@@ -1,12 +1,11 @@
 package com.lookup.repository;
 
-import com.lookup.domain.User;
+import com.lookup.domain.Uuser;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 
-public interface UserRepository extends MongoRepository<User, String> {
-    User findBy_id(ObjectId _id);
+public interface UserRepository extends MongoRepository<Uuser, String> {
+    Uuser findBy_id(ObjectId _id);
 
-    User findByName(String name);
+    Uuser findByName(String name);
 }
