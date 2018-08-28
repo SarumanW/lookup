@@ -1,0 +1,16 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6">
+        <div class="form-group input-content">
+          <input type="text" class="form-control" id="search-content" [value]="inputClicked ? '' : inputText"
+                 (focus)="inputClicked = !inputClicked" (blur)="inputClicked = !inputClicked">
+          <button type="button" class="btn">Искать</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-content"></div>

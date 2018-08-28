@@ -1,0 +1,30 @@
+.main-content {
+  height: calc(100vh - 80px);
+  margin: 0;
+  background: #F0F3BD url("../../assets/coffee.jpg");
+  background-size: cover;
+}
+
+.input-content {
+  padding-top: 500px;
+  display: flex;
+  flex-direction: row;
+}
+
+.input-content input {
+  width: 500px;
+  height: 50px;
+  font-size: 20px;
+  font-style: italic;
+  color: rgba(83,98,126,0.6);
+}
+
+.btn {
+  width: 90px;
+  margin-left: 10px;
+  background-color: #528859;
+  color: white;
+  font-size: 20px;
+  font-style: italic;
+  padding: 0;
+}

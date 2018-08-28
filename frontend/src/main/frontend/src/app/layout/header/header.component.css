@@ -1,0 +1,14 @@
+header {
+  color: #fff;
+  background-color: #A3C9A8;
+  height: 80px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+p {
+  font-size: 50px;
+  text-transform: uppercase;
+  margin-left: 30px;
+}
