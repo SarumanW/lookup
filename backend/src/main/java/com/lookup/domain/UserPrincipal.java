@@ -13,9 +13,9 @@ public class UserPrincipal implements UserDetails {
     private String password;
     private List<SimpleGrantedAuthority> authorities;
 
-    public UserPrincipal(Uuser uuser, List<SimpleGrantedAuthority> authorities) {
-        this.name = uuser.getName();
-        this.password = uuser.getPassword();
+    public UserPrincipal(User user, List<SimpleGrantedAuthority> authorities) {
+        this.name = user.getName();
+        this.password = user.getPassword();
         this.authorities = authorities;
     }
 

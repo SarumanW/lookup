@@ -1,6 +1,6 @@
 package com.lookup.controller;
 
-import com.lookup.domain.Uuser;
+import com.lookup.domain.User;
 import com.lookup.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,24 +26,24 @@ public class UserController {
 
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/{name}")
-    public ResponseEntity<Uuser> getUserByName(@PathVariable String name) {
-        log.debug("Trying to get uuser by name '{}'", name);
+    public ResponseEntity<User> getUserByName(@PathVariable String name) {
+        log.debug("Trying to get user by name '{}'", name);
 
-        Uuser uuser = userRepository.findByName(name);
+        User user = userRepository.findByName(name);
 
-        log.debug("Send response body uuser '{}' and status OK", uuser.toString());
+        log.debug("Send response body user '{}' and status OK", user.toString());
 
-        return new ResponseEntity<>(uuser, HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @GetMapping("")
-    public ResponseEntity<List<Uuser>> getAllUsers() {
-        log.debug("Trying to get all uusers");
+    public ResponseEntity<List<User>> getAllUsers() {
+        log.debug("Trying to get all users");
 
-        List<Uuser> uusers = userRepository.findAll();
+        List<User> users = userRepository.findAll();
 
-        log.debug("Found all uusers: '{}'", uusers.toString());
+        log.debug("Found all users: '{}'", users.toString());
 
-        return new ResponseEntity<>(uusers, HttpStatus.OK);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 }
