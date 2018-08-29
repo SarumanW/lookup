@@ -17,6 +17,7 @@
   font-size: 20px;
   font-style: italic;
   color: rgba(83,98,126,0.6);
+  box-shadow: 0 8px 6px -6px #528859;
 }
 
 .btn {
@@ -27,4 +28,167 @@
   font-size: 20px;
   font-style: italic;
   padding: 0;
+  box-shadow: 0 8px 6px -6px rgba(83,98,126,0.6);
+}
+
+.about-us {
+  height: calc(200vh - 80px);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #A3C9A8;
+}
+
+/*Information cards section*/
+
+.interactive-map {
+  width: 1200px;
+  height: 550px;
+  display: flex;
+  justify-content: center;
+  background-color: #CCE0CE;
+  position: absolute;
+  top: calc(100vh - 130px);
+  border-radius: 3px;
+  padding-top: 63px;
+}
+
+.interactive-map img {
+  max-width:134px;
+  max-height:125px;
+  position: absolute;
+  top: calc(-62px);
+}
+
+.interactive-map p {
+  font-size: 40px;
+  color: #3D6D72;
+}
+
+.cardholder {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 1200px;
+  margin-top: 30px;
+}
+
+.card {
+  background-color: white;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  padding: 10px 0 0 0;
+  border-radius: 5px;
+  flex-direction: column;
+}
+
+.card img {
+  max-width:35%;
+  max-height:25%;
+}
+
+.card-text {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 5px 0 5px;
+}
+
+.card-text p {
+  text-align: center;
+  font-size: 17px;
+}
+
+/*Become a coach section*/
+
+.become-coach {
+  width: 1200px;
+  height: 500px;
+  top: calc(100vh + 550px);
+  position: absolute;
+  border-radius: 3px;
+  background-color: #CCE0CE;
+  display: flex;
+  justify-content: center;
+}
+
+.become-coach img {
+  max-width:134px;
+  max-height:125px;
+  position: absolute;
+  top: calc(-50px);
+  z-index: 2;
+}
+
+.coach-contain {
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  border-radius: 3px;
+}
+
+.coach-img {
+  background: #F0F3BD url("../../assets/brooke-cagle.jpg");
+  background-size: cover;
+  height: 500px;
+}
+
+.coach-text-container {
+  background-color: #CCE0CE;
+  height: 500px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.coach-text {
+  height: 45%;
+  width: 85%;
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 0 5px 0 5px;
+}
+
+.coach-text-container p {
+  font-size: 40px;
+  color: #3D6D72;
+  text-align: center;
+}
+
+.become-btn {
+  width: 50%;
+  height: 10%;
+  margin-top: 40px;
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+.btn:hover {
+  background-color: #77AE7E;
+}
+
+/*Start using section*/
+
+.start-using {
+  width: 1200px;
+  height: 500px;
+  top: calc(100vh + 1180px);
+  position: absolute;
+  border-radius: 3px;
+  /*background-color: #CCE0CE;*/
+  display: flex;
+  justify-content: center;
+  background: url("../../assets/start-using-table.jpg");
+  background-size: cover;
 }
