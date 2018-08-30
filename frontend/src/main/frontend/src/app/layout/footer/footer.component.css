@@ -3,4 +3,26 @@ footer {
   background-color: #3D6D72;
   height: 80px;
   margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 30px;
+}
+
+footer img {
+  max-width:45%;
+  max-height:35%;
+  margin-right: 10px;
+}
+
+footer p {
+  font-size: 20px;
+  position: absolute;
+  right: 30px;
+  color: white;
+}
+
+footer img:hover {
+  cursor: pointer;
 }

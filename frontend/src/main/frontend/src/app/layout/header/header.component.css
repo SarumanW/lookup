@@ -11,15 +11,29 @@ p {
   font-size: 50px;
   text-transform: uppercase;
   margin-left: 30px;
+  cursor: pointer;
+  outline: none;
 }
 
 span {
   font-size: 20px;
   margin-left: 30px;
+  cursor: pointer;
+  outline: none;
 }
 
 .log {
   position: absolute;
   right: 30px;
   top: 32px;
+  cursor: pointer;
+  outline: none;
+}
+
+.log:hover {
+  text-decoration: underline;
+}
+
+span:hover {
+  text-decoration: underline;
 }
