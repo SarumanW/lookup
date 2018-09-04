@@ -4,9 +4,23 @@
       <p>Войти в систему</p>
     </div>
     <div class="body form-group">
-      <input type="text" class="form-control" placeholder="Enter Username" required>
-      <input type="password" class="form-control" placeholder="Enter Password" required>
+      <input type="text" class="form-control" placeholder="Введите логин" [(ngModel)]="loginText" id="login" name="login"
+             minlength=4 maxlength=50 #login="ngModel" required autocomplete="off">
+      <div class="login-help" *ngIf="login.dirty && login.invalid">
+        <small class="form-text text-danger" *ngIf="login?.errors.required">
+          Поле логина обязательно.
+        </small>
+        <small class="form-text text-danger" *ngIf="login?.errors.minlength">
+          Логин должен состоять минимум из 4 символов.
+        </small>
+      </div>
+      <input type="password" class="form-control" placeholder="Введите пароль" id="password" name="password" minlength=4 maxlength=50 required>
       <button type="button" class="btn">Войти</button>
+
+      <div class="social">
+        <p>ИЛИ</p>
+        <p>Войдите с помощью социальных сетей</p>
+      </div>
 
     </div>
   </div>

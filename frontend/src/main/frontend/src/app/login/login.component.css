@@ -40,3 +40,25 @@
   margin: 0 0 20px 0;
 }
 
+.body button {
+  background-color: #528859;
+  color: white;
+  font-size: 15px;
+}
+
+.body button:hover {
+  background-color: #77AE7E;
+  text-decoration: underline;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.login-help {
+
+}

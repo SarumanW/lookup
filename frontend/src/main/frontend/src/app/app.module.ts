@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import  {FormsModule} from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -8,6 +9,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 import {RoutingModule} from "./routing.module";
 import { LoginComponent } from './login/login.component';
+import { CoachlistComponent } from './coachlist/coachlist.component';
 
 @NgModule({
   declarations: [
@@ -15,11 +17,13 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     FooterComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    CoachlistComponent
   ],
   imports: [
     BrowserModule,
-    RoutingModule
+    RoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
