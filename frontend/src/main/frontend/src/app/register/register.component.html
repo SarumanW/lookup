@@ -1,0 +1,66 @@
+<div class="main-content">
+  <div class="register-form">
+    <div class="header">
+      <p>Зарегистрироваться</p>
+    </div>
+
+    <form name="form" role="form" #loginForm="ngForm" class="body">
+      <div class="table-row">
+        <label for="login">Логин</label>
+        <input type="text" class="form-control" placeholder="Введите логин" [(ngModel)]="loginText" id="login"
+               name="login" minlength=4 maxlength=20 #login="ngModel" required autocomplete="off"
+               [pattern]="loginPattern">
+      </div>
+
+      <div class="register-help" *ngIf="login.value !== null && login.dirty && login.invalid">
+        <small class="form-text text-danger" *ngIf="login?.errors.required">
+          Поле логина обязательно.
+        </small>
+        <small class="form-text text-danger" *ngIf="login?.errors.pattern">
+          Логин должен содержать от 4 до 20 символов, разрешается использовать только большие и маленькие буквы, цифры и
+          символы '-' или '_'.
+        </small>
+      </div>
+
+      <div class="table-row">
+        <label for="password">Пароль</label>
+        <input type="password" class="form-control" placeholder="Введите пароль" [(ngModel)]="passwordText"
+               id="password"
+               name="password" minlength=4 maxlength=20 #password="ngModel" required [pattern]="passwordPattern">
+      </div>
+
+      <div class="register-help" *ngIf="password.dirty && password.invalid">
+        <small class="form-text text-danger" *ngIf="password?.errors.required">
+          Поле пароля обязательно.
+        </small>
+        <small class="form-text text-danger" *ngIf="password?.errors.pattern">
+          Пароль должен состоять минимум из 4 символов, содержать минимум одну букву нижнего регистра, одну букву
+          большого регистра и одну цифру.
+        </small>
+      </div>
+
+      <div class="table-row">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" placeholder="Введите email" [(ngModel)]="emailText" id="email"
+               name="email" minlength=7 maxlength=50 #email="ngModel" required autocomplete="off"
+               [pattern]="emailPattern">
+      </div>
+
+      <div class="register-help" *ngIf="email.dirty && email.invalid">
+        <small class="form-text text-danger" *ngIf="email?.errors.required">
+          Поле электронной почты обязательно.
+        </small>
+        <small class="form-text text-danger" *ngIf="email?.errors.pattern">
+          Введённый вами адрес электронной почты не соответствует образцу.
+        </small>
+      </div>
+
+      <button type="button" class="btn">Зарегестрироваться</button>
+
+      <div class="social">
+        <p>ИЛИ</p>
+        <p>Войдите с помощью социальных сетей</p>
+      </div>
+    </form>
+  </div>
+</div>

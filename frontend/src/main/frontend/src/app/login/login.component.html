@@ -1,20 +1,34 @@
 <div class="main-content">
-  <div class="login-form">
+  <div class="register-form">
     <div class="header">
       <p>Войти в систему</p>
     </div>
-    <div class="body form-group">
-      <input type="text" class="form-control" placeholder="Введите логин" [(ngModel)]="loginText" id="login" name="login"
-             minlength=4 maxlength=50 #login="ngModel" required autocomplete="off">
-      <div class="login-help" *ngIf="login.dirty && login.invalid">
+
+    <form name="form" role="form" #loginForm="ngForm" class="body">
+      <input type="text" class="form-control" placeholder="Введите логин" [(ngModel)]="loginText" id="login"
+             name="login" minlength=4 maxlength=20 #login="ngModel" required autocomplete="off"
+             [pattern]="loginPattern">
+      <div class="register-help" *ngIf="login.value !== null && login.dirty && login.invalid">
         <small class="form-text text-danger" *ngIf="login?.errors.required">
           Поле логина обязательно.
         </small>
-        <small class="form-text text-danger" *ngIf="login?.errors.minlength">
-          Логин должен состоять минимум из 4 символов.
+        <small class="form-text text-danger" *ngIf="login?.errors.pattern">
+          Логин должен содержать от 4 до 20 символов, разрешается использовать только большие и маленькие буквы, цифры и
+          символы '-' или '_'.
         </small>
       </div>
-      <input type="password" class="form-control" placeholder="Введите пароль" id="password" name="password" minlength=4 maxlength=50 required>
+      <input type="password" class="form-control" placeholder="Введите пароль" [(ngModel)]="passwordText" id="password"
+             name="password" minlength=4 maxlength=20 #password="ngModel" required [pattern]="passwordPattern">
+      <div class="register-help" *ngIf="password.dirty && password.invalid">
+        <small class="form-text text-danger" *ngIf="password?.errors.required">
+          Поле пароля обязательно.
+        </small>
+        <small class="form-text text-danger" *ngIf="password?.errors.pattern">
+          Пароль должен состоять минимум из 4 символов, содержать минимум одну букву нижнего регистра, одну букву
+          большого регистра и одну цифру.
+        </small>
+      </div>
+
       <button type="button" class="btn">Войти</button>
 
       <div class="social">
@@ -22,6 +36,10 @@
         <p>Войдите с помощью социальных сетей</p>
       </div>
 
-    </div>
+      <hr>
+
+      <p>Ты ещё не с нами?</p>
+      <button type="button" class="btn" [routerLink]="['/register']">Зарегестрироваться</button>
+    </form>
   </div>
 </div>

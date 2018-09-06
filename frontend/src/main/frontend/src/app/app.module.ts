@@ -10,6 +10,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import {RoutingModule} from "./routing.module";
 import { LoginComponent } from './login/login.component';
 import { CoachlistComponent } from './coachlist/coachlist.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CoachlistComponent } from './coachlist/coachlist.component';
     FooterComponent,
     HeaderComponent,
     LoginComponent,
-    CoachlistComponent
+    CoachlistComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

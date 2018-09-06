@@ -1,7 +1,7 @@
 .main-content {
   height: calc(100vh - 80px);
   margin: 0;
-  background: #F0F3BD url("../../assets/coffee.jpg");
+  background: url("../../assets/coffee.jpg");
   background-size: cover;
 }
 
