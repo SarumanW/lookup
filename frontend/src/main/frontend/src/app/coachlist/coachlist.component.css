@@ -6,3 +6,23 @@
   justify-content: center;
   align-items: center;
 }
+
+.coaches-block {
+  background-color: white;
+  width: 900px;
+  min-height: 600px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 0 30px 0;
+}
+
+.coach {
+  background-color: #edeff0;
+  width: 600px;
+  height: 100px;
+  border-radius: 3px;
+  margin: 0 0 20px 0;
+}
