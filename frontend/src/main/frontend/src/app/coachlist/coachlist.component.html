@@ -1,7 +1,21 @@
+<div class="coach-choose">
+
+</div>
 <div class="main-content">
   <div class="coaches-block">
     <div class="coach" *ngFor="let coach of coaches">
-      <p>{{coach.name}}</p>
+      <div class="row">
+        <div class="col-md-3">
+          <img src="../../assets/avatar.jpg">
+        </div>
+        <div class="col-md-9">
+          <div class="coach-head">
+            <span>{{coach.name}}</span>
+            <button type="button" class="btn">Написать тренеру</button>
+          </div>
+          <p>{{coach.description}}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

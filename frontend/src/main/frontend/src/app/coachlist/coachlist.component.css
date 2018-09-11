@@ -1,28 +1,61 @@
 .main-content {
-  height: calc(100vh - 80px);
   margin: 0;
   background-color: #edeff0;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 40px 0;
 }
 
 .coaches-block {
   background-color: white;
   width: 900px;
-  min-height: 600px;
   border-radius: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 30px 0 30px 0;
+  overflow: hidden;
 }
 
 .coach {
   background-color: #edeff0;
-  width: 600px;
-  height: 100px;
+  width: 800px;
+  min-height: 130px;
   border-radius: 3px;
   margin: 0 0 20px 0;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.coach span {
+  font-weight: bold;
+}
+
+.coach-head {
+  margin-bottom: 15px;
+}
+
+.coach img {
+  width: 80%;
+  height: auto;
+}
+
+.btn {
+  float: right;
+  height: 25px;
+  width: 130px;
+  padding: 0;
+  margin-right: 20px;
+}
+
+.btn:hover {
+  background-color: #A3C9A8;
+  color: white;
+  text-decoration: underline;
+}
+
+.coach-choose {
+  height: 100px;
 }
