@@ -1,19 +1,44 @@
 <div class="coach-choose">
+  <div class="coach-choose-inside">
 
+  </div>
 </div>
+
 <div class="main-content">
   <div class="coaches-block">
     <div class="coach" *ngFor="let coach of coaches">
-      <div class="row">
-        <div class="col-md-3">
-          <img src="../../assets/avatar.jpg">
-        </div>
-        <div class="col-md-9">
-          <div class="coach-head">
-            <span>{{coach.name}}</span>
-            <button type="button" class="btn">Написать тренеру</button>
+      <div class="container-fluid zero">
+        <div class="row zero">
+          <div class="col-md-2 zero avatar">
           </div>
-          <p>{{coach.description}}</p>
+          <div class="col-md-8">
+            <span>{{coach.name}}</span>
+            <p>{{coach.description}}</p>
+          </div>
+          <div class="col-md-2 zero">
+
+            <div class="coach-info">
+              <div class="coach-info-inside">
+                <div class="star">
+                  <img src="../../assets/star.svg">
+                </div>
+                <div class="mark">
+                  <span>5.0</span>
+                </div>
+              </div>
+            </div>
+            <div class="coach-info">
+              <div class="coach-info-inside">
+                <span>400 грн/час</span>
+              </div>
+            </div>
+            <div class="coach-info">
+              <div class="coach-info-inside">
+                <button type="button" class="btn">Написать тренеру</button>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
