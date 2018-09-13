@@ -1,6 +1,29 @@
 <div class="coach-choose">
   <div class="coach-choose-inside">
+    <div class="category">
+      <p>Категория</p>
+      <p-dropdown #d1 [options]="categories" filter="true" class="drop" optionLabel="label" [autoWidth]="false"
+                  [style]="{'width':'180px'}" [(ngModel)]="selectedCategory" (onChange)="selectLesson()" (onFocus)="clearFilter(d1)">
+      </p-dropdown>
+    </div>
 
+    <div class="category">
+      <p>Занятие</p>
+      <p-dropdown #d2 [options]="shownStudies" filter="true" class="drop" optionLabel="name" [autoWidth]="false" [style]="{'width':'180px'}">
+      </p-dropdown>
+    </div>
+
+    <div class="category">
+      <p>Стоимость</p>
+      <p>{{rangeValues[0] + ' - ' + rangeValues[1]}}</p>
+      <p-slider [(ngModel)]="rangeValues" [min]="0" [max]="1000" [style]="{'width':'180px'}" [range]="true" [step]="10"></p-slider>
+    </div>
+
+    <div class="category">
+      <p>Город</p>
+      <p-dropdown #d4 [options]="cities" filter="true" class="drop" optionLabel="label" [autoWidth]="false" [style]="{'width':'180px'}">
+      </p-dropdown>
+    </div>
   </div>
 </div>
 

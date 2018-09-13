@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Coach} from "../domain/Coach";
+import {SelectItem} from "primeng/api";
+import {Study} from "../domain/Study";
+import {Dropdown} from "primeng/primeng";
 
 @Component({
   selector: 'app-coachlist',
@@ -71,9 +74,55 @@ export class CoachlistComponent implements OnInit {
       "поэтому ваша фигура в безопасности, если она в моих руках!"}
   ];
 
-  constructor() { }
+  categories: SelectItem[];
+  shownStudies: Study[];
+  studies: Study[];
+  costs: SelectItem[];
+  cities: SelectItem[];
+  rangeValues: number[] = [200,500];
+
+  selectedCategory: SelectItem;
+
+  constructor() {
+    this.categories = [
+      {label: 'Все', value: 'Все'},
+      {label: 'Спорт', value: 'Спорт'},
+      {label: 'Программирование', value: 'Программирование'},
+      {label: 'Языки', value: 'Языки'},
+      {label: 'Точные науки', value: 'Точные науки'}
+    ];
+
+    this.studies = [
+      {category: 'Спорт', name: 'Плавание'},
+      {category: 'Спорт', name: 'Теннис'},
+      {category: 'Программирование', name: 'Java'},
+      {category: 'Программирование', name: 'Проектирование решений'},
+      {category: 'Языки', name: 'Английский'},
+      {category: 'Языки', name: 'Французский'},
+      {category: 'Точные науки', name: 'Математика'},
+      {category: 'Точные науки', name: 'Физика'}
+    ];
+
+    this.cities = [
+      {label: 'Киев', value: 'Киев'},
+      {label: 'Луцк', value: 'Луцк'},
+      {label: 'Сумы', value: 'Сумы'},
+      {label: 'Полтава', value: 'Полтава'},
+      {label: 'Хмельницкий', value: 'Хмельницкий'}
+    ];
+  }
 
   ngOnInit() {
+    this.shownStudies = this.studies;
+  }
+
+  selectLesson() {
+    this.shownStudies = this.selectedCategory.label === 'Все' ? this.studies :
+      this.studies.filter(study => study.category === this.selectedCategory.label);
+  }
+
+  clearFilter(dropdown: Dropdown) {
+    dropdown.resetFilter();
   }
 
 }

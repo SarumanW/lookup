@@ -125,7 +125,8 @@
 .coach-choose-inside {
   height: 80%;
   width: 900px;
-  background-color: #3D6D72;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
-
 

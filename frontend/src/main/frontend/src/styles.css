@@ -1,5 +1,11 @@
 body {
-  /*font-family: 'Dosis', sans-serif;*/
   font-family: 'Source Sans Pro', sans-serif;
   overflow-y:scroll;
+}
+
+.ui-state-highlight, .ui-slider-range {
+  background-color: #A3C9A8!important;
+}
+.ui-dropdown-filter-icon {
+  color: #A3C9A8!important;
 }

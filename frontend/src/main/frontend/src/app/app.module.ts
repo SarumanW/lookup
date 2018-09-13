@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import  {FormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -11,6 +11,9 @@ import {RoutingModule} from "./routing.module";
 import { LoginComponent } from './login/login.component';
 import { CoachlistComponent } from './coachlist/coachlist.component';
 import { RegisterComponent } from './register/register.component';
+import {DropdownModule} from 'primeng/dropdown';
+import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {SliderModule} from 'primeng/slider';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,11 @@ import { RegisterComponent } from './register/register.component';
   imports: [
     BrowserModule,
     RoutingModule,
-    FormsModule
+    FormsModule,
+    DropdownModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+    SliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
