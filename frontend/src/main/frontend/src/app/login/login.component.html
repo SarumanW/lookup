@@ -8,11 +8,11 @@
       <input type="text" class="form-control" placeholder="Введите логин" [(ngModel)]="loginText" id="login"
              name="login" minlength=4 maxlength=20 #login="ngModel" required autocomplete="off"
              [pattern]="loginPattern">
-      <div class="register-help" *ngIf="login.value !== null && login.dirty && login.invalid">
-        <small class="form-text text-danger" *ngIf="login?.errors.required">
+      <div class="register-help" *ngIf="name.value !== null && name.dirty && name.invalid">
+        <small class="form-text text-danger" *ngIf="name?.errors.required">
           Поле логина обязательно.
         </small>
-        <small class="form-text text-danger" *ngIf="login?.errors.pattern">
+        <small class="form-text text-danger" *ngIf="name?.errors.pattern">
           Логин должен содержать от 4 до 20 символов, разрешается использовать только большие и маленькие буквы, цифры и
           символы '-' или '_'.
         </small>
