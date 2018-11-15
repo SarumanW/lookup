@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AccountService} from "../service/account.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -14,13 +16,19 @@ export class LoginComponent implements OnInit {
   passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{4,20}$";
   emailPattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
 
-  constructor() { }
+  constructor(private accountService: AccountService,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
-  login(){
-
+  loginUser(){
+    this.accountService.login({'login' : this.loginText, 'password' : this.passwordText}).subscribe(
+      (profile) => {
+        console.log(profile);
+        this.router.navigate(['/profile']);
+      }
+    )
   }
 
 }

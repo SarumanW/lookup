@@ -14,6 +14,10 @@ import { RegisterComponent } from './register/register.component';
 import {DropdownModule} from 'primeng/dropdown';
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {SliderModule} from 'primeng/slider';
+import {AuthGuard} from './service/auth.guard';
+import { ProfileComponent } from './profile/profile.component';
+import {AccountService} from "./service/account.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -23,7 +27,8 @@ import {SliderModule} from 'primeng/slider';
     HeaderComponent,
     LoginComponent,
     CoachlistComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +37,12 @@ import {SliderModule} from 'primeng/slider';
     DropdownModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    SliderModule
+    SliderModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

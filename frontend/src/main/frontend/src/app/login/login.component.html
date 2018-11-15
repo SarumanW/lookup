@@ -4,12 +4,12 @@
       <p>Войти в систему</p>
     </div>
 
-    <form name="form" role="form" #loginForm="ngForm" class="body" (ngSubmit)="login()">
+    <form name="form" role="form" #loginForm="ngForm" class="body">
       <input type="text" class="form-control" placeholder="Введите логин" [(ngModel)]="loginText" id="login"
              name="login" minlength=4 maxlength=20 #login="ngModel" required autocomplete="off"
              [pattern]="loginPattern">
-      <div class="register-help" *ngIf="name?.value && name.dirty && name.invalid">
-        <small class="form-text text-danger" *ngIf="name?.errors.required">
+      <div class="register-help" *ngIf="login?.value && login.dirty && login.invalid">
+        <small class="form-text text-danger" *ngIf="login?.errors.required">
           Поле логина обязательно.
         </small>
         <small class="form-text text-danger" *ngIf="name?.errors.pattern">
@@ -29,7 +29,7 @@
         </small>
       </div>
 
-      <button type="button" class="btn" [disabled]="loginForm.checkValidity()">Войти</button>
+      <button type="submit" class="btn" (click)="loginUser()">Войти</button>
 
       <div class="social">
         <p>ИЛИ</p>

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Coach} from "../domain/Coach";
+import {User} from "../domain/User";
 import {SelectItem} from "primeng/api";
 import {Study} from "../domain/Study";
 import {Dropdown} from "primeng/primeng";
@@ -11,7 +11,7 @@ import {Dropdown} from "primeng/primeng";
 })
 export class CoachlistComponent implements OnInit {
 
-  coaches : Coach[] = [
+  coaches : User[] = [
     {name: "Олександра Остапенко", description: "Всем привет! Я спортивный тренер в городе Киев. " +
       "Мой основной профиль - занятия кроссфитом и функциональными тренировками. Так же занимаюсь " +
       "тренерством по бодибилдингу, провожу занятия в тренажерном зале. Работаю в залах на подоле, " +
