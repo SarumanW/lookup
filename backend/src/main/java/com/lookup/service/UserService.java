@@ -51,4 +51,19 @@ public class UserService {
 
         return user;
     }
+
+    public User insertUser(User user){
+        log.debug("Trying to insert user with login '{}'", user.getLogin());
+
+        User resultUser = userDao.insert(user);
+
+        if (resultUser == null) {
+            log.error("Insertion failed for user with login '{}'", user.getLogin());
+            //TODO:throw custom exception
+        }
+
+        log.debug("Inserted user '{}'", resultUser.toString());
+
+        return resultUser;
+    }
 }

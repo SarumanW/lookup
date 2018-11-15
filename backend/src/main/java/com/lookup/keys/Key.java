@@ -1,6 +1,10 @@
 package com.lookup.keys;
 
 public class Key {
+
+    //TABLES
+    public static final String TABLE_UUSER = "UUSER";
+
     //User table
     public static final String UUSER_USER_ID ="user_id";
     public static final String UUSER_LOGIN ="login";

@@ -8,7 +8,7 @@
       <input type="text" class="form-control" placeholder="Введите логин" [(ngModel)]="loginText" id="login"
              name="login" minlength=4 maxlength=20 #login="ngModel" required autocomplete="off"
              [pattern]="loginPattern">
-      <div class="register-help" *ngIf="name.value !== null && name.dirty && name.invalid">
+      <div class="register-help" *ngIf="name?.value && name.dirty && name.invalid">
         <small class="form-text text-danger" *ngIf="name?.errors.required">
           Поле логина обязательно.
         </small>

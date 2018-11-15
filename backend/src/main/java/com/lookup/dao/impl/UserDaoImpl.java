@@ -9,12 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import static com.lookup.keys.Key.USER_FIND_BY_ID;
-import static com.lookup.keys.Key.USER_FIND_BY_LOGIN;
+import java.util.HashMap;
+import java.util.Map;
 
-@Repository
+import static com.lookup.keys.Key.*;
+
+@Repository("userDao")
 @PropertySource("classpath:sqlDao.properties")
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
@@ -99,7 +102,35 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public User insert(User model) {
-        return null;
+        log.debug("Try to insert user with login '{}'", model.getLogin());
+
+        int id;
+
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate.getDataSource())
+                .withTableName(TABLE_UUSER)
+                .usingGeneratedKeyColumns(UUSER_USER_ID);
+
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put(UUSER_USER_ID, model.getId());
+        parameters.put(UUSER_LOGIN, model.getLogin());
+        parameters.put(UUSER_PASSWORD, model.getPassword());
+        parameters.put(UUSER_EMAIL, model.getEmail());
+        parameters.put(UUSER_IS_COACH, model.getIsCoach());
+        parameters.put(UUSER_CITY_ID, model.getCityId());
+
+        try {
+            log.debug("Try to execute statement");
+            id = simpleJdbcInsert.executeAndReturnKey(parameters).intValue();
+            model.setId(id);
+        } catch (DataAccessException e) {
+            log.error("Query fails by insert User",e);
+            //TODO: throw custom exception
+        }
+
+        log.debug("User with login '{}' was inserted", model.getLogin());
+
+        return model;
     }
 
     @Override
