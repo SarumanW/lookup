@@ -2,15 +2,21 @@ package com.lookup.security;
 
 import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.lookup.domain.User;
+import com.lookup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.FilterChain;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +28,8 @@ import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 import static com.lookup.security.SecurityConstants.*;
 
 public class JWTAuthenticationFilter  extends UsernamePasswordAuthenticationFilter {
+
+    private UserService userService;
 
     private AuthenticationManager authenticationManager;
 
@@ -60,5 +68,12 @@ public class JWTAuthenticationFilter  extends UsernamePasswordAuthenticationFilt
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(SECRET.getBytes()));
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+
+        ServletContext servletContext = req.getServletContext();
+        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+        userService = webApplicationContext.getBean(UserService.class);
+
+        res.getWriter().write(new Gson().toJson(userService.
+                getUserByLogin(((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername())));
     }
 }

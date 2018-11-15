@@ -4,7 +4,7 @@
       <p>Войти в систему</p>
     </div>
 
-    <form name="form" role="form" #loginForm="ngForm" class="body">
+    <form name="form" role="form" #loginForm="ngForm" class="body" (ngSubmit)="login()">
       <input type="text" class="form-control" placeholder="Введите логин" [(ngModel)]="loginText" id="login"
              name="login" minlength=4 maxlength=20 #login="ngModel" required autocomplete="off"
              [pattern]="loginPattern">
@@ -29,7 +29,7 @@
         </small>
       </div>
 
-      <button type="button" class="btn">Войти</button>
+      <button type="button" class="btn" [disabled]="loginForm.checkValidity()">Войти</button>
 
       <div class="social">
         <p>ИЛИ</p>
@@ -39,7 +39,7 @@
       <hr>
 
       <p>Ты ещё не с нами?</p>
-      <button type="button" class="btn" [routerLink]="['/register']">Зарегестрироваться</button>
+      <button type="button" class="btn" [routerLink]="['/register']">Зарегистрироваться</button>
     </form>
   </div>
 </div>
