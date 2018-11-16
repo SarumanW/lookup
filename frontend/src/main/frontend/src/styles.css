@@ -9,3 +9,19 @@ body {
 .ui-dropdown-filter-icon {
   color: #A3C9A8!important;
 }
+
+.ui-dropdown {
+  border: 1px solid #ccc!important;
+}
+
+.ui-g {
+  margin-bottom: 20px;
+}
+
+.ui-chkbox-icon {
+  background-color: #A3C9A8!important;
+}
+
+.ui-chkbox-box.ui-state-active, .ui-chkbox-box.ui-state-focus {
+  border-color: #A3C9A8!important;
+}

@@ -1,7 +1,7 @@
 export class User {
-  public name: string;
+  public login: string;
   public description: string;
   public email : string;
   public cityId : number;
-  public isCoach : number;
+  public isCoach : boolean = false;
 }

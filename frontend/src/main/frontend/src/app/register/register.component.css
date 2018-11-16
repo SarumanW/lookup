@@ -34,6 +34,7 @@
   align-items: center;
   flex-direction: column;
   padding: 30px 30px 10px 30px;
+  font-size: 14px;
 }
 
 .body input {
@@ -43,7 +44,7 @@
 .body button {
   background-color: #528859;
   color: white;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .body button:hover {
@@ -72,7 +73,11 @@
   justify-content: flex-start;
 }
 
-label {
+.table-row label {
   width: 100px;
 }
 
+.city-handler {
+  width: 100%;
+  margin: 0 0 20px 20px;
+}

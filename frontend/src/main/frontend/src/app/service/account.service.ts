@@ -29,9 +29,14 @@ export class AccountService {
       })
   }
 
-  getUserByLogin(login: string):Observable<any>{
+  getUserByLogin(login: string): Observable<any>{
     return this.http
       .get('api/users/' + login);
+  }
+
+  registerUser(user: User): Observable<any>{
+    return this.http
+      .post('api/users/sign-up', user);
   }
 
 }

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
-
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './layout/footer/footer.component';
@@ -20,6 +19,8 @@ import {AccountService} from "./service/account.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TokenInterceptor} from "./service/token.interceptor";
 import {AuthService} from "./service/auth.service";
+import {CheckboxModule} from "primeng/primeng";
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,9 @@ import {AuthService} from "./service/auth.service";
     BrowserAnimationsModule,
     NoopAnimationsModule,
     SliderModule,
-    HttpClientModule
+    HttpClientModule,
+    CheckboxModule,
+    InputTextareaModule
   ],
   providers: [
     AuthGuard,

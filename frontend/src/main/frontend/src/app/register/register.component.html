@@ -7,7 +7,7 @@
     <form name="form" role="form" #loginForm="ngForm" class="body">
       <div class="table-row">
         <label for="login">Логин</label>
-        <input type="text" class="form-control" placeholder="Введите логин" [(ngModel)]="loginText" id="login"
+        <input type="text" class="form-control" placeholder="Введите логин" [(ngModel)]="user.login" id="login"
                name="login" minlength=4 maxlength=20 #login="ngModel" required autocomplete="off"
                [pattern]="loginPattern">
       </div>
@@ -24,7 +24,7 @@
 
       <div class="table-row">
         <label for="password">Пароль</label>
-        <input type="password" class="form-control" placeholder="Введите пароль" [(ngModel)]="passwordText"
+        <input type="password" class="form-control" placeholder="Введите пароль" [(ngModel)]="user.password"
                id="password"
                name="password" minlength=4 maxlength=20 #password="ngModel" required [pattern]="passwordPattern">
       </div>
@@ -34,14 +34,13 @@
           Поле пароля обязательно.
         </small>
         <small class="form-text text-danger" *ngIf="password?.errors.pattern">
-          Пароль должен состоять минимум из 4 символов, содержать минимум одну букву нижнего регистра, одну букву
-          большого регистра и одну цифру.
+          Пароль должен состоять минимум из 4 символов и содержать минимум одну цифру.
         </small>
       </div>
 
       <div class="table-row">
         <label for="email">Email</label>
-        <input type="email" class="form-control" placeholder="Введите email" [(ngModel)]="emailText" id="email"
+        <input type="email" class="form-control" placeholder="Введите email" [(ngModel)]="user.email" id="email"
                name="email" minlength=7 maxlength=50 #email="ngModel" required autocomplete="off"
                [pattern]="emailPattern">
       </div>
@@ -55,7 +54,32 @@
         </small>
       </div>
 
-      <button type="button" class="btn">Зарегестрироваться</button>
+      <div class="table-row">
+        <label for="city">Город</label>
+        <div class="city-handler">
+          <p-dropdown name="city" id="city" [options]="cities" filter="true" class="drop" optionLabel="label" [autoWidth]="false"
+                      [style]="{'width' : '100%'}" [(ngModel)]="selectedCity" (onChange)="changeCity()">
+          </p-dropdown>
+        </div>
+      </div>
+
+      <div class="table-row">
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <p-checkbox binary="true" name="checkCoach" label="Я регистируюсь как тренер"
+                        [(ngModel)]="user.isCoach"></p-checkbox>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-row" *ngIf="user.isCoach==true">
+        <label for="description">Описание</label>
+        <input type="text" class="form-control" placeholder="Введите описание своей деятельности"
+               [(ngModel)]="user.description" id="description"
+               name="description" minlength=7 maxlength=300 #description="ngModel" required autocomplete="off">
+      </div>
+
+      <button type="button" class="btn" (click)="register()">Зарегестрироваться</button>
 
       <div class="social">
         <p>ИЛИ</p>

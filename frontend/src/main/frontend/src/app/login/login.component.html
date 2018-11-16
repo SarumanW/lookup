@@ -12,7 +12,7 @@
         <small class="form-text text-danger" *ngIf="login?.errors.required">
           Поле логина обязательно.
         </small>
-        <small class="form-text text-danger" *ngIf="name?.errors.pattern">
+        <small class="form-text text-danger" *ngIf="login?.errors.pattern">
           Логин должен содержать от 4 до 20 символов, разрешается использовать только большие и маленькие буквы, цифры и
           символы '-' или '_'.
         </small>
@@ -24,8 +24,7 @@
           Поле пароля обязательно.
         </small>
         <small class="form-text text-danger" *ngIf="password?.errors.pattern">
-          Пароль должен состоять минимум из 4 символов, содержать минимум одну букву нижнего регистра, одну букву
-          большого регистра и одну цифру.
+          Пароль должен состоять минимум из 4 символов и содержать минимум одну цифру.
         </small>
       </div>
 
