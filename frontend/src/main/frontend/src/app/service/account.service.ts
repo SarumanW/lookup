@@ -18,9 +18,9 @@ export class AccountService {
       .map(resp => {
         let user;
 
-        if (resp.headers.get('Bearer')) {
+        if (resp.headers.get('Authorization')) {
           user = {'login' : resp.body.login,
-                  'token' : resp.headers.get('Bearer')};
+                  'token' : resp.headers.get('Authorization').split(" ")[1]};
 
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
@@ -29,14 +29,9 @@ export class AccountService {
       })
   }
 
-
-
-  profile(login: string):Observable<any>{
-    let headers = new HttpHeaders()
-      .set("Authorization", `Bearer ${JSON.parse(localStorage.currentUser).token}`);
-
+  getUserByLogin(login: string):Observable<any>{
     return this.http
-      .get('api/profile/' + login, {headers: headers});
+      .get('api/users/' + login);
   }
 
 }

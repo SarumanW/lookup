@@ -17,7 +17,9 @@ import {SliderModule} from 'primeng/slider';
 import {AuthGuard} from './service/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import {AccountService} from "./service/account.service";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {TokenInterceptor} from "./service/token.interceptor";
+import {AuthService} from "./service/auth.service";
 
 @NgModule({
   declarations: [
@@ -42,7 +44,13 @@ import {HttpClientModule} from "@angular/common/http";
   ],
   providers: [
     AuthGuard,
-    AccountService],
+    AccountService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
