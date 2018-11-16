@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.lookup.keys.Key.*;
@@ -37,9 +38,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         try {
             user = jdbcTemplate.queryForObject(
                     env.getProperty(USER_FIND_BY_LOGIN),
-                    new Object[]{login}, new UserRowMapper() {
-                    }
-            );
+                    new Object[]{login}, userRowMapper);
 
         } catch (EmptyResultDataAccessException e) {
             log.error("User with login '{}' not found", login, e);
@@ -55,23 +54,20 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public User findByEmail(String email) {
-        return null;
-    }
-
-    @Override
     public void updatePassword(User user) {
 
     }
 
     @Override
-    public boolean isLoginFree(String login) {
-        return false;
-    }
+    public List<User> findAllCoaches(int cityId, int startPrice, int endPrice, int skillId) {
+        log.debug("Try to get coaches by params '{}' '{}' '{}' '{}'", cityId, startPrice, endPrice, skillId);
 
-    @Override
-    public boolean isEmailFree(String email) {
-        return false;
+        List<User> coaches = jdbcTemplate.query(env.getProperty(USER_FIND_COACHES),
+                new Object[]{cityId, startPrice, endPrice, skillId}, userRowMapper);
+
+        log.debug("Coaches found: '{}'", coaches);
+
+        return coaches;
     }
 
     @Override
@@ -83,9 +79,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         try {
             user = jdbcTemplate.queryForObject(
                     env.getProperty(USER_FIND_BY_ID),
-                    new Object[]{id}, new UserRowMapper() {
-                    }
-            );
+                    new Object[]{id}, userRowMapper);
 
         } catch (EmptyResultDataAccessException e) {
             log.error("User with id '{}' not found", id,e);
@@ -118,6 +112,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         parameters.put(UUSER_EMAIL, model.getEmail());
         parameters.put(UUSER_IS_COACH, model.isCoach() ? 1 : 0);
         parameters.put(UUSER_CITY_ID, model.getCityId());
+        parameters.put(UUSER_DESCRIPTION, model.getDescription());
 
         try {
             log.debug("Try to execute statement");

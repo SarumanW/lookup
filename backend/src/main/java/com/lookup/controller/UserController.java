@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/api/users")
 public class UserController {
@@ -51,6 +53,17 @@ public class UserController {
         userService.insertUser(user);
 
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/coaches")
+    public ResponseEntity<List<User>> getAllCoaches(@RequestParam("cityId") String cityId, @RequestParam("startPrice") String startPrice,
+                                              @RequestParam("endPrice") String endPrice, @RequestParam("skillId") String skillId) {
+        log.debug("Trying to get all coaches");
+
+        List<User> coaches = userService.getAllCoaches(Integer.valueOf(cityId), Integer.valueOf(startPrice),
+                Integer.valueOf(endPrice), Integer.valueOf(skillId));
+
+        return new ResponseEntity<>(coaches, HttpStatus.OK);
     }
 }
 

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     private static Logger log = LoggerFactory.getLogger(UserService.class);
@@ -65,5 +67,20 @@ public class UserService {
         log.debug("Inserted user '{}'", resultUser.toString());
 
         return resultUser;
+    }
+
+    public List<User> getAllCoaches(int cityId, int startPrice, int endPrice, int skillId){
+        log.debug("Try to get coaches by params '{}' '{}' '{}' '{}'", cityId, startPrice, endPrice, skillId);
+
+        List<User> coaches = userDao.findAllCoaches(cityId, startPrice, endPrice, skillId);
+
+        if (coaches == null) {
+            log.error("Coaches where not found");
+            //TODO:throw custom exception
+        }
+
+        log.debug("Found coaches successfully");
+
+        return coaches;
     }
 }

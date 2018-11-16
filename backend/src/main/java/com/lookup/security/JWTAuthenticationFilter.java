@@ -54,7 +54,7 @@ public class JWTAuthenticationFilter  extends UsernamePasswordAuthenticationFilt
         }
     }
 
-    //method called when a user successfully logs in. We use this method to generate a JWT for this user.
+    //method called when a user successfully logs in. We use this method to generate a JWT for this user
     @Override
     protected void successfulAuthentication(HttpServletRequest req,
                                             HttpServletResponse res,
