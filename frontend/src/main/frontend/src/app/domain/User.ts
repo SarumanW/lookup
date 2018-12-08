@@ -3,5 +3,4 @@ export class User {
   public description: string;
   public email : string;
   public cityId : number;
-  public isCoach : boolean = false;
 }

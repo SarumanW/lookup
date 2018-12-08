@@ -12,4 +12,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  static isUserLoggedIn() : boolean{
+    return localStorage.getItem("currentUser") === null;
+  }
+
+  static logout() {
+    localStorage.clear();
+  }
+
 }

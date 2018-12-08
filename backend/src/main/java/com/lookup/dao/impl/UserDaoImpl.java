@@ -110,7 +110,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         parameters.put(UUSER_LOGIN, model.getLogin());
         parameters.put(UUSER_PASSWORD, model.getPassword());
         parameters.put(UUSER_EMAIL, model.getEmail());
-        parameters.put(UUSER_IS_COACH, model.isCoach() ? 1 : 0);
         parameters.put(UUSER_CITY_ID, model.getCityId());
         parameters.put(UUSER_DESCRIPTION, model.getDescription());
 
