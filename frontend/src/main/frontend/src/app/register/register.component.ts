@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
 
   user: User = new User();
   selectedCity: SelectItem;
+  isCoach: boolean;
 
   loginPattern = "^[a-z0-9_-]{4,20}$";
   passwordPattern = "^[a-z0-9_-]{4,20}$";
@@ -22,6 +23,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private accountService: AccountService,
               private router: Router) {
+    //TODO: parse from constants
     this.cities = [
       {label: 'Киев', value: 1},
       {label: 'Луцк', value: 2},
@@ -39,7 +41,10 @@ export class RegisterComponent implements OnInit {
     this.accountService.registerUser(this.user).subscribe(
       (user) => {
         console.log(user);
-        this.router.navigate(['/login']);
+        this.accountService.login(this.user).subscribe((resp) =>{
+          console.log(resp);
+          this.router.navigate(['/choose-skills']);
+        });
       }
     )
   }

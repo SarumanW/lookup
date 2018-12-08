@@ -34,17 +34,17 @@
   align-items: center;
   flex-direction: column;
   padding: 30px 30px 10px 30px;
-  font-size: 14px;
 }
 
 .body input {
   margin: 0 0 20px 20px;
+  font-size: 16px;
 }
 
 .body button {
   background-color: #528859;
   color: white;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .body button:hover {

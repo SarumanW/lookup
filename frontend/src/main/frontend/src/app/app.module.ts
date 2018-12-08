@@ -1,26 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { FooterComponent } from './layout/footer/footer.component';
-import { HeaderComponent } from './layout/header/header.component';
+import {AppComponent} from './app.component';
+import {HomeComponent} from './home/home.component';
+import {FooterComponent} from './layout/footer/footer.component';
+import {HeaderComponent} from './layout/header/header.component';
 import {RoutingModule} from "./routing.module";
-import { LoginComponent } from './login/login.component';
-import { CoachlistComponent } from './coachlist/coachlist.component';
-import { RegisterComponent } from './register/register.component';
+import {LoginComponent} from './login/login.component';
+import {CoachlistComponent} from './coachlist/coachlist.component';
+import {RegisterComponent} from './register/register.component';
 import {DropdownModule} from 'primeng/dropdown';
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {SliderModule} from 'primeng/slider';
 import {AuthGuard} from './service/auth.guard';
-import { ProfileComponent } from './profile/profile.component';
+import {ProfileComponent} from './profile/profile.component';
 import {AccountService} from "./service/account.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TokenInterceptor} from "./service/token.interceptor";
 import {AuthService} from "./service/auth.service";
-import {CheckboxModule} from "primeng/primeng";
+import {CheckboxModule, MultiSelectModule} from "primeng/primeng";
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import {ChooseSkillsComponent} from './choose-skills/choose-skills.component';
+import {SkillsService} from './service/skills.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     LoginComponent,
     CoachlistComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    ChooseSkillsComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     SliderModule,
     HttpClientModule,
     CheckboxModule,
-    InputTextareaModule
+    InputTextareaModule,
+    MultiSelectModule
   ],
   providers: [
     AuthGuard,
@@ -53,7 +57,9 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
       useClass: TokenInterceptor,
       multi: true
     },
-    AuthService],
+    AuthService,
+    SkillsService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

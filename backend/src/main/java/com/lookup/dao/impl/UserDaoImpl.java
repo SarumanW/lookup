@@ -31,7 +31,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public User findByLogin(String login) {
-        log.debug("Try to find User by login: '{}'", login);
+        log.debug("[UserDaoImpl.findByLogin]: Try to find User by login: '{}'", login);
 
         User user = null;
 
@@ -41,14 +41,14 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                     new Object[]{login}, userRowMapper);
 
         } catch (EmptyResultDataAccessException e) {
-            log.error("User with login '{}' not found", login, e);
+            log.error("[UserDaoImpl.findByLogin]: User with login '{}' not found", login, e);
             //TODO: throw custom exception
         }catch (DataAccessException e) {
-            log.error("Query fails by finding user with login '{}'", login, e);
+            log.error("[UserDaoImpl.findByLogin]: Query fails by finding user with login '{}'", login, e);
             //TODO: throw custom exception
         }
 
-        log.debug("User with login '{}' was found", login);
+        log.debug("[UserDaoImpl.findByLogin]: User with login '{}' was found", login);
 
         return user;
     }
@@ -60,19 +60,19 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public List<User> findAllCoaches(int cityId, int startPrice, int endPrice, int skillId) {
-        log.debug("Try to get coaches by params '{}' '{}' '{}' '{}'", cityId, startPrice, endPrice, skillId);
+        log.debug("[UserDaoImpl.findAllCoaches]: Try to get coaches by params '{}' '{}' '{}' '{}'", cityId, startPrice, endPrice, skillId);
 
         List<User> coaches = jdbcTemplate.query(env.getProperty(USER_FIND_COACHES),
                 new Object[]{cityId, startPrice, endPrice, skillId}, userRowMapper);
 
-        log.debug("Coaches found: '{}'", coaches);
+        log.debug("[UserDaoImpl.findAllCoaches]: Coaches found: '{}'", coaches);
 
         return coaches;
     }
 
     @Override
     public User findById(int id) {
-        log.debug("Try to find User by id: '{}'", id);
+        log.debug("[UserDaoImpl.findById]: Try to find User by id: '{}'", id);
 
         User user = null;
 
@@ -82,21 +82,21 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                     new Object[]{id}, userRowMapper);
 
         } catch (EmptyResultDataAccessException e) {
-            log.error("User with id '{}' not found", id,e);
+            log.error("[UserDaoImpl.findById]: User with id '{}' not found", id,e);
             //TODO: throw custom exception
         }catch (DataAccessException e) {
-            log.error("Query fails by finding user with id '{}'", id,e);
+            log.error("[UserDaoImpl.findById]: Query fails by finding user with id '{}'", id,e);
             //TODO: throw custom exception
         }
 
-        log.debug("User with id '{}' was found", id);
+        log.debug("[UserDaoImpl.findById]: User with id '{}' was found", id);
 
         return user;
     }
 
     @Override
     public User insert(User model) {
-        log.debug("Try to insert user with login '{}'", model.getLogin());
+        log.debug("[UserDaoImpl.insert]: Try to insert user with login '{}'", model.getLogin());
 
         int id;
 
@@ -114,15 +114,15 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         parameters.put(UUSER_DESCRIPTION, model.getDescription());
 
         try {
-            log.debug("Try to execute statement");
+            log.debug("[UserDaoImpl.insert]: Try to execute statement");
             id = simpleJdbcInsert.executeAndReturnKey(parameters).intValue();
             model.setId(id);
         } catch (DataAccessException e) {
-            log.error("Query fails by insert User",e);
+            log.error("[UserDaoImpl.insert]: Query fails by insert User",e);
             //TODO: throw custom exception
         }
 
-        log.debug("User with login '{}' was inserted", model.getLogin());
+        log.debug("[UserDaoImpl.insert]: User with login '{}' was inserted", model.getLogin());
 
         return model;
     }

@@ -3,8 +3,8 @@ package com.lookup.security;
 import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.lookup.dao.UserDao;
 import com.lookup.domain.User;
-import com.lookup.service.UserService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,7 +27,7 @@ import static com.lookup.security.SecurityConstants.*;
 
 public class JWTAuthenticationFilter  extends UsernamePasswordAuthenticationFilter {
 
-    private UserService userService;
+    private UserDao userDao;
 
     private AuthenticationManager authenticationManager;
 
@@ -69,9 +69,9 @@ public class JWTAuthenticationFilter  extends UsernamePasswordAuthenticationFilt
 
         ServletContext servletContext = req.getServletContext();
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
-        userService = webApplicationContext.getBean(UserService.class);
+        userDao = webApplicationContext.getBean(UserDao.class);
 
-        res.getWriter().write(new Gson().toJson(userService.
-                getUserByLogin(((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername())));
+        res.getWriter().write(new Gson().toJson(userDao.
+                findByLogin(((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername())));
     }
 }

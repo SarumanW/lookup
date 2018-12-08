@@ -13,7 +13,7 @@ public class User {
     private int id;
     private String login;
 
-    @JsonIgnore
+//    @JsonIgnore
     private String password;
 
     private String email;

@@ -7,10 +7,10 @@
   align-items: center;
 }
 
-.register-form {
+.choose-skills-form {
   background-color: white;
-  width: 500px;
-  height: 600px;
+  width: 1200px;
+  height: 700px;
   border-radius: 3px;
 }
 
@@ -28,17 +28,9 @@
   color: white;
 }
 
-.body {
+.body{
+  height: 80%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 30px 30px 10px 30px;
-}
-
-.body input {
-  margin: 0 0 20px 0;
-  font-size: 16px;
 }
 
 .body button {
@@ -52,15 +44,12 @@
   text-decoration: underline;
 }
 
-.social {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 30px;
+.skill-col {
+  height: 100%;
+  width: 50%;
+  padding: 20px;
 }
 
-.register-help {
-  margin-top: -20px;
-  text-align: center;
+.select {
+  margin: 20px 20px 20px 0;
 }

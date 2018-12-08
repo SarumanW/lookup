@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../domain/User";
 import {SelectItem} from "primeng/api";
-import {Study} from "../domain/Study";
 import {Dropdown} from "primeng/primeng";
+import {Skill} from "../domain/Skill";
 
 @Component({
   selector: 'app-coachlist',
@@ -76,8 +76,8 @@ export class CoachlistComponent implements OnInit {
   // ];
 
   categories: SelectItem[];
-  shownStudies: Study[];
-  studies: Study[];
+  shownStudies: Skill[];
+  studies: Skill[];
   costs: SelectItem[];
   cities: SelectItem[];
   rangeValues: number[] = [200,500];
@@ -93,16 +93,16 @@ export class CoachlistComponent implements OnInit {
       {label: 'Точные науки', value: 'Точные науки'}
     ];
 
-    this.studies = [
-      {category: 'Спорт', name: 'Плавание'},
-      {category: 'Спорт', name: 'Теннис'},
-      {category: 'Программирование', name: 'Java'},
-      {category: 'Программирование', name: 'Проектирование решений'},
-      {category: 'Языки', name: 'Английский'},
-      {category: 'Языки', name: 'Французский'},
-      {category: 'Точные науки', name: 'Математика'},
-      {category: 'Точные науки', name: 'Физика'}
-    ];
+    // this.studies = [
+    //   {categoryId: 'Спорт', name: 'Плавание'},
+    //   {categoryId: 'Спорт', name: 'Теннис'},
+    //   {categoryId: 'Программирование', name: 'Java'},
+    //   {categoryId: 'Программирование', name: 'Проектирование решений'},
+    //   {categoryId: 'Языки', name: 'Английский'},
+    //   {categoryId: 'Языки', name: 'Французский'},
+    //   {categoryId: 'Точные науки', name: 'Математика'},
+    //   {categoryId: 'Точные науки', name: 'Физика'}
+    // ];
 
     this.cities = [
       {label: 'Киев', value: 'Киев'},
@@ -114,12 +114,12 @@ export class CoachlistComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.shownStudies = this.studies;
+    // this.shownStudies = this.studies;
   }
 
   selectLesson() {
-    this.shownStudies = this.selectedCategory.label === 'Все' ? this.studies :
-      this.studies.filter(study => study.category === this.selectedCategory.label);
+    // this.shownStudies = this.selectedCategory.label === 'Все' ? this.studies :
+    //   this.studies.filter(study => study.categoryId === this.selectedCategory.label);
   }
 
   clearFilter(dropdown: Dropdown) {

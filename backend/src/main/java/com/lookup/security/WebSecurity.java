@@ -1,6 +1,5 @@
 package com.lookup.security;
 
-import com.lookup.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

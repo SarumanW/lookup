@@ -1,0 +1,35 @@
+<div class="main-content">
+  <div class="choose-skills-form">
+    <div class="header">
+      <p>Выбери навыки, которым хочешь учить и учиться</p>
+    </div>
+
+    <div class="body">
+      <div class="skill-col">
+        <p>Хочу уметь</p>
+
+        <div class="select">
+          <p-multiSelect [options]="skills" [(ngModel)]="selectedSkillsToLearn"
+                         [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+          <p>Выбранные навыки: {{selectedSkillsToLearn}}</p>
+        </div>
+
+      </div>
+      <div class="skill-col">
+        <p>Уже умею</p>
+
+        <div class="select">
+          <p-multiSelect [options]="skills" [(ngModel)]="selectedSkillsToTeach"
+                         [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+          <p>Выбранные навыки: {{selectedSkillsToTeach}}</p>
+        </div>
+
+        <!--TODO: add price input for each-->
+
+        <div class="footer">
+          <button type="button" class="btn" (click)="addSkills()">Продолжить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

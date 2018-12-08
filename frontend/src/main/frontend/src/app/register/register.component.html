@@ -67,12 +67,12 @@
         <div class="ui-g">
           <div class="ui-g-12">
             <p-checkbox binary="true" name="checkCoach" label="Я регистируюсь как тренер"
-                        [(ngModel)]="user.isCoach"></p-checkbox>
+                        [(ngModel)]="isCoach"></p-checkbox>
           </div>
         </div>
       </div>
 
-      <div class="table-row" *ngIf="user.isCoach==true">
+      <div class="table-row" *ngIf="isCoach==true">
         <label for="description">Описание</label>
         <input type="text" class="form-control" placeholder="Введите описание своей деятельности"
                [(ngModel)]="user.description" id="description"

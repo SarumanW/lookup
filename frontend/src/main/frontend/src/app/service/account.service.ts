@@ -20,6 +20,7 @@ export class AccountService {
 
         if (resp.headers.get('Authorization')) {
           user = {'login' : resp.body.login,
+                  'id' : resp.body.id,
                   'token' : resp.headers.get('Authorization').split(" ")[1]};
 
           localStorage.setItem('currentUser', JSON.stringify(user));

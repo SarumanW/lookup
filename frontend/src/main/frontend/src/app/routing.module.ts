@@ -6,13 +6,16 @@ import {CoachlistComponent} from "./coachlist/coachlist.component";
 import {RegisterComponent} from "./register/register.component";
 import {AuthGuard} from "./service/auth.guard";
 import {ProfileComponent} from "./profile/profile.component";
+import {ChooseSkillsComponent} from "./choose-skills/choose-skills.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'coaches', component: CoachlistComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]}
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'choose-skills', component: ChooseSkillsComponent, canActivate: [AuthGuard]}
+  // {path: 'choose-skills', component: ChooseSkillsComponent}
 ];
 
 
