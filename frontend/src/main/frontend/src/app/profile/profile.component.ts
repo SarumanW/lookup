@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AccountService} from "../service/account.service";
 import {User} from "../domain/User";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-profile',
@@ -9,18 +10,21 @@ import {User} from "../domain/User";
 })
 export class ProfileComponent implements OnInit {
 
-  gotUser : User;
+  currentUser : User;
 
   constructor(private accountService: AccountService) { }
 
   ngOnInit() {
-    this.accountService.getUserByLogin("admin").subscribe(
+    this.accountService.getFullUserById(JSON.parse(localStorage.getItem("currentUser")).id).subscribe(
       (profile) => {
-        this.gotUser = profile;
+        this.currentUser = profile;
         console.log(profile);
       }
-
     )
+  }
+
+  onTabChange(event) {
+    console.log("tab pressed");
   }
 
 }

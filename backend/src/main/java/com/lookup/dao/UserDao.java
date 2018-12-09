@@ -11,4 +11,6 @@ public interface UserDao extends Dao<User> {
     void updatePassword(User user);
 
     List<User> findAllCoaches(int cityId, int startPrice, int endPrice, int skillId);
+
+    User findFullByLogin(int id);
 }

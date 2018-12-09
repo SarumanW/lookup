@@ -1,4 +1,36 @@
-<div>
-  {{gotUser.login}}
+<div class="main-content">
+  <div class="profile-form">
+    <p-tabView (onChange)="onTabChange($event)">
+      <p-tabPanel header="Мои данные" leftIcon="pi pi pi-user">
+         <div class="data row">
+             <div class="col-sm-2">
+               <p>Логин:</p>
+               <p>Почта:</p>
+               <p>Описание:</p>
+               <p>Город:</p>
+               <p>Последний отзыв о работе:</p>
+             </div>
+             <div class="col-sm-2">
+               <p>{{currentUser.login}}</p>
+               <p>{{currentUser.email}}</p>
+               <p>{{currentUser.description}}</p>
+               <p>{{currentUser.cityName}}</p>
+               <p>{{currentUser.lastCommentText}}</p>
+             </div>
+         </div>
+      </p-tabPanel>
+      <p-tabPanel header="Мои чаты" leftIcon="pi pi-inbox">
+        <div class="data">
+
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Моя статистика" leftIcon="pi pi-star">
+        <div class="data">
+
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
 </div>
+
 

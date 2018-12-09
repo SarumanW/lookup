@@ -71,6 +71,30 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
+    public User findFullByLogin(int id) {
+        log.debug("[UserDaoImpl.findFullByLogin]: Try to find full User by id: '{}'", id);
+
+        User user = null;
+
+        try {
+            user = jdbcTemplate.queryForObject(
+                    env.getProperty(USER_FIND_FULL_BY_ID),
+                    new Object[]{id, id}, userRowMapper);
+
+        } catch (EmptyResultDataAccessException e) {
+            log.error("[UserDaoImpl.findFullByLogin]: User with id '{}' not found", id, e);
+            //TODO: throw custom exception
+        }catch (DataAccessException e) {
+            log.error("[UserDaoImpl.findFullByLogin]: Query fails by finding full user with id '{}'", id, e);
+            //TODO: throw custom exception
+        }
+
+        log.debug("[UserDaoImpl.findFullByLogin]: User with id '{}' was found", id);
+
+        return user;
+    }
+
+    @Override
     public User findById(int id) {
         log.debug("[UserDaoImpl.findById]: Try to find User by id: '{}'", id);
 

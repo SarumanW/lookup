@@ -36,6 +36,17 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    @GetMapping("/full/{id}")
+    public ResponseEntity<User> getFullUserById(@PathVariable int id) {
+        log.debug("[UserController.getFullUserById]: Trying to get full user by id '{}'", id);
+
+        User user = userDao.findFullByLogin(id);
+
+        log.debug("[UserController.getFullUserById]: Send response body user '{}' and status OK", user.toString());
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
     @PostMapping("/sign-up")
     public ResponseEntity<User> signUp(@RequestBody User user) {
         log.debug(user.toString());
@@ -48,6 +59,7 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    //TODO: pass city name and skill name instead of id to access 2 and more tables
     @GetMapping("/coaches")
     public ResponseEntity<List<User>> getAllCoaches(@RequestParam("cityId") String cityId, @RequestParam("startPrice") String startPrice,
                                               @RequestParam("endPrice") String endPrice, @RequestParam("skillId") String skillId) {

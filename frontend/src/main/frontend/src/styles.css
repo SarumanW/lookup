@@ -1,3 +1,6 @@
+@import "~font-awesome/css/font-awesome.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+
 body {
   font-family: 'Source Sans Pro', sans-serif;
   overflow-y:scroll;
@@ -26,3 +29,17 @@ body {
 .ui-chkbox-box.ui-state-active, .ui-chkbox-box.ui-state-focus {
   border-color: #A3C9A8!important;
 }
+
+.ui-tabview-panels {
+  height: 93%;
+}
+
+.ui-tabview, .ui-tabview-top {
+  height: 100%;
+}
+
+.ui-tabview, .ui-tabview-top, .ui-tabview-nav, li.ui-state-active, li.ui-state-active:hover{
+  background-color: #A3C9A8!important;
+  border: 1px solid #A3C9A8!important;
+}
+

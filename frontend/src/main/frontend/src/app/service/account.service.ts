@@ -35,6 +35,11 @@ export class AccountService {
       .get('api/users/' + login);
   }
 
+  getFullUserById(id: number): Observable<any>{
+    return this.http
+      .get('api/users/full/' + id);
+  }
+
   registerUser(user: User): Observable<any>{
     return this.http
       .post('api/users/sign-up', user);
@@ -45,7 +50,7 @@ export class AccountService {
       .set("endPrice", endPrice.toString()).set("skillId", skillId.toString());
 
     return this.http
-      .get('api/users/get-caoches', {params : params});
+      .get('api/users/get-coaches', {params : params});
   }
 
 }

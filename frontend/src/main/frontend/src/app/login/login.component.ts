@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   passwordText: string = "";
 
   loginPattern = "^[a-z0-9_-]{4,20}$";
-  passwordPattern = "^(?=.*[a-z])(?=.*\\d){4,20}$";
+  passwordPattern = "^[a-z0-9_-]{4,20}$";
 
   constructor(private accountService: AccountService,
               private router: Router) { }

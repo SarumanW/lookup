@@ -19,10 +19,12 @@ import {AccountService} from "./service/account.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TokenInterceptor} from "./service/token.interceptor";
 import {AuthService} from "./service/auth.service";
-import {CheckboxModule, MultiSelectModule} from "primeng/primeng";
+import {CheckboxModule, MultiSelectModule, TabViewModule} from "primeng/primeng";
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {ChooseSkillsComponent} from './choose-skills/choose-skills.component';
 import {SkillsService} from './service/skills.service';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,10 @@ import {SkillsService} from './service/skills.service';
     HttpClientModule,
     CheckboxModule,
     InputTextareaModule,
-    MultiSelectModule
+    MultiSelectModule,
+    TabViewModule,
+    MessagesModule,
+    MessageModule
   ],
   providers: [
     AuthGuard,

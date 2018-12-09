@@ -11,11 +11,10 @@ import {ChooseSkillsComponent} from "./choose-skills/choose-skills.component";
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'coaches', component: CoachlistComponent},
+  {path: 'coaches', component: CoachlistComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'choose-skills', component: ChooseSkillsComponent, canActivate: [AuthGuard]}
-  // {path: 'choose-skills', component: ChooseSkillsComponent}
 ];
 
 
