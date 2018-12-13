@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {User} from "../domain/User";
 
@@ -45,9 +45,11 @@ export class AccountService {
       .post('api/users/sign-up', user);
   }
 
-  getAllCoaches(cityId : number, startPrice : number, endPrice : number, skillId : number) :  Observable<any>{
-    let params = new HttpParams().set("cityId", cityId.toString()).set("startPrice", startPrice.toString())
-      .set("endPrice", endPrice.toString()).set("skillId", skillId.toString());
+  getAllCoaches(cityName : string, skillName : string, startPrice : number, endPrice : number) :  Observable<any>{
+    let params = new HttpParams().set("cityName", cityName)
+      .set("skillName", skillName)
+      .set("startPrice", startPrice.toString())
+      .set("endPrice", endPrice.toString());
 
     return this.http
       .get('api/users/get-coaches', {params : params});

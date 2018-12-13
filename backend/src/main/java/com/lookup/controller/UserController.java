@@ -61,12 +61,14 @@ public class UserController {
 
     //TODO: pass city name and skill name instead of id to access 2 and more tables
     @GetMapping("/coaches")
-    public ResponseEntity<List<User>> getAllCoaches(@RequestParam("cityId") String cityId, @RequestParam("startPrice") String startPrice,
-                                              @RequestParam("endPrice") String endPrice, @RequestParam("skillId") String skillId) {
+    public ResponseEntity<List<User>> getAllCoaches(@RequestParam("cityName") String cityName,
+                                                    @RequestParam("skillName") String skillName,
+                                                    @RequestParam("startPrice") String startPrice,
+                                                    @RequestParam("endPrice") String endPrice) {
         log.debug("[UserController.getAllCoaches]: Trying to get all coaches");
 
-        List<User> coaches = userDao.findAllCoaches(Integer.valueOf(cityId), Integer.valueOf(startPrice),
-                Integer.valueOf(endPrice), Integer.valueOf(skillId));
+        List<User> coaches = userDao.findAllCoaches(cityName, skillName, Integer.valueOf(startPrice),
+                Integer.valueOf(endPrice));
 
         return new ResponseEntity<>(coaches, HttpStatus.OK);
     }

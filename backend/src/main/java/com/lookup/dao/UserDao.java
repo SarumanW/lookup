@@ -10,7 +10,7 @@ public interface UserDao extends Dao<User> {
 
     void updatePassword(User user);
 
-    List<User> findAllCoaches(int cityId, int startPrice, int endPrice, int skillId);
+    List<User> findAllCoaches(String cityName, String skillName, int startPrice, int endPrice);
 
     User findFullByLogin(int id);
 }

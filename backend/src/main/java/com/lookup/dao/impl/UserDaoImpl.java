@@ -2,6 +2,7 @@ package com.lookup.dao.impl;
 
 import com.lookup.dao.AbstractDao;
 import com.lookup.dao.UserDao;
+import com.lookup.dao.rowmappers.UserFullRowMapper;
 import com.lookup.dao.rowmappers.UserRowMapper;
 import com.lookup.domain.User;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,9 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Autowired
     private UserRowMapper userRowMapper;
+
+    @Autowired
+    private UserFullRowMapper userFullRowMapper;
 
     public UserDaoImpl() {
         log = LoggerFactory.getLogger(UserDaoImpl.class);
@@ -59,11 +63,11 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public List<User> findAllCoaches(int cityId, int startPrice, int endPrice, int skillId) {
-        log.debug("[UserDaoImpl.findAllCoaches]: Try to get coaches by params '{}' '{}' '{}' '{}'", cityId, startPrice, endPrice, skillId);
+    public List<User> findAllCoaches(String cityName, String skillName, int startPrice, int endPrice) {
+        log.debug("[UserDaoImpl.findAllCoaches]: Try to get coaches by params '{}' '{}' '{}' '{}'", cityName, skillName, startPrice, endPrice);
 
         List<User> coaches = jdbcTemplate.query(env.getProperty(USER_FIND_COACHES),
-                new Object[]{cityId, startPrice, endPrice, skillId}, userRowMapper);
+                new Object[]{cityName, skillName, startPrice, endPrice}, userRowMapper);
 
         log.debug("[UserDaoImpl.findAllCoaches]: Coaches found: '{}'", coaches);
 
@@ -79,7 +83,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         try {
             user = jdbcTemplate.queryForObject(
                     env.getProperty(USER_FIND_FULL_BY_ID),
-                    new Object[]{id, id}, userRowMapper);
+                    new Object[]{id, id}, userFullRowMapper);
 
         } catch (EmptyResultDataAccessException e) {
             log.error("[UserDaoImpl.findFullByLogin]: User with id '{}' not found", id, e);

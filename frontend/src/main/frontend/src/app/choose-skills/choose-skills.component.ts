@@ -14,6 +14,7 @@ export class ChooseSkillsComponent implements OnInit {
   skills: SelectItem[] = [];
   selectedSkillsToLearn: string[] = [];
   selectedSkillsToTeach: string[] = [];
+  prices: number[] = [];
 
   constructor(private skillsService: SkillsService) {
 
@@ -48,6 +49,10 @@ export class ChooseSkillsComponent implements OnInit {
       (response) => {
 
       })
+  }
+
+  addPrice(){
+
   }
 
 }

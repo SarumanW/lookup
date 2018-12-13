@@ -8,11 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static com.lookup.keys.Key.*;
+import static com.lookup.keys.Key.UUSER_DESCRIPTION;
 
 @Component
-public class UserRowMapper implements RowMapper<User> {
+public class UserFullRowMapper implements RowMapper<User> {
     @Override
-    public User mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+    public User mapRow(ResultSet resultSet, int i) throws SQLException {
         User user = new User();
 
         user.setId(resultSet.getInt(UUSER_USER_ID));
@@ -20,6 +21,8 @@ public class UserRowMapper implements RowMapper<User> {
         user.setPassword(resultSet.getString(UUSER_PASSWORD));
         user.setEmail(resultSet.getString(UUSER_EMAIL));
         user.setDescription(resultSet.getString(UUSER_DESCRIPTION));
+        user.setCityName(resultSet.getString(UUSER_CITY_NAME));
+        user.setLastCommentText(resultSet.getString(UUSER_LAST_COMMENT_TEXT_ABOUT));
         return user;
     }
 }
