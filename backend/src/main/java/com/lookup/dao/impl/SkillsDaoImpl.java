@@ -2,6 +2,7 @@ package com.lookup.dao.impl;
 
 import com.lookup.dao.AbstractDao;
 import com.lookup.dao.SkillsDao;
+import com.lookup.dao.rowmappers.SkillFullRowMapper;
 import com.lookup.dao.rowmappers.SkillRowMapper;
 import com.lookup.domain.Skill;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,9 @@ public class SkillsDaoImpl extends AbstractDao<Skill> implements SkillsDao {
 
     @Autowired
     private SkillRowMapper skillRowMapper;
+
+    @Autowired
+    private SkillFullRowMapper skillFullRowMapper;
 
     public SkillsDaoImpl() {
         log = LoggerFactory.getLogger(UserDaoImpl.class);
@@ -62,6 +66,18 @@ public class SkillsDaoImpl extends AbstractDao<Skill> implements SkillsDao {
                 new Object[]{}, skillRowMapper);
 
         log.debug("[SkillsDaoImpl.getAllSkills]: Skills found: '{}'", skills);
+
+        return skills;
+    }
+
+    @Override
+    public List<Skill> getUserSkills(int userId) {
+        log.debug("[SkillsDaoImpl.getUserSkills]: Try to get all skills ");
+
+        List<Skill> skills = jdbcTemplate.query(env.getProperty(SKILL_GET_USER_SKILLS),
+                new Object[]{userId}, skillFullRowMapper);
+
+        log.debug("[SkillsDaoImpl.getUserSkills]: Skills found: '{}'", skills);
 
         return skills;
     }

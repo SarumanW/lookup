@@ -40,4 +40,13 @@ public class SkillsController {
 
         return new ResponseEntity<>(skills, HttpStatus.OK);
     }
+
+    @GetMapping("/getUserSkills/{userId}")
+    public ResponseEntity<List<Skill>> getUserSkills(@PathVariable int userId){
+        log.debug("[SkillsController.getUserSkills: try to get skills for user with id {}", userId);
+
+        List<Skill> skills = skillsDao.getUserSkills(userId);
+
+        return new ResponseEntity<>(skills, HttpStatus.OK);
+    }
 }

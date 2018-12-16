@@ -30,6 +30,7 @@ public class Key {
     public static final String SKILL_NAME = "name";
     public static final String SKILL_CATEGORY_ID = "category_id";
     public static final String SKILL_CATEGORY_NAME = "category_name";
+    public static final String SKILL_IS_COACHED = "is_coached";
 
     //UserDao
     public static final String USER_FIND_BY_ID = "user.findById";
@@ -40,4 +41,5 @@ public class Key {
 
     //SkillDao
     public static final String SKILL_GET_ALL_SKILLS = "skill.getAllSkills";
+    public static final String SKILL_GET_USER_SKILLS = "skill.getUserSkills";
 }

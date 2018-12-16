@@ -3,6 +3,8 @@ import {AccountService} from "../service/account.service";
 import {User} from "../domain/User";
 import {MessageService} from "primeng/api";
 import {Constants} from "../domain/Constants";
+import {SkillsService} from "../service/skills.service";
+import {Skill} from "../domain/Skill";
 
 @Component({
   selector: 'app-profile',
@@ -15,16 +17,34 @@ export class ProfileComponent implements OnInit {
   display: boolean = false;
   cities: any[];
 
+  skillsToLearn: Skill[] = [];
+  skillsToTeach: Skill[] = [];
+
   selectedCity: any;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService,
+              private skillsService: SkillsService) { }
 
   ngOnInit() {
-    this.accountService.getFullUserById(JSON.parse(localStorage.getItem("currentUser")).id).subscribe(
+    let userId = JSON.parse(localStorage.getItem("currentUser")).id;
+
+    this.accountService.getFullUserById(userId).subscribe(
       (profile) => {
         this.currentUser = profile;
         this.selectedCity = {id: profile.cityId, name: profile.cityName};
         console.log(profile);
+      }
+    );
+
+    this.skillsService.getUserSkills(userId).subscribe(
+      (skills) => {
+        skills.forEach((skill) => {
+          if(skill.isCoached === 1){
+            this.skillsToTeach.push(skill);
+          } else {
+            this.skillsToLearn. push(skill);
+          }
+        })
       }
     );
 

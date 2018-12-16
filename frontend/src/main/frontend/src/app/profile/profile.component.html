@@ -2,20 +2,24 @@
   <div class="profile-form">
     <p-tabView (onChange)="onTabChange($event)">
       <p-tabPanel header="Мои данные" leftIcon="pi pi pi-user">
-        <div class="data row" *ngIf="currentUser">
+        <div class="data row" *ngIf="currentUser && skillsToTeach && skillsToLearn">
           <div class="col-sm-4">
             <p>Логин:</p>
             <p>Почта:</p>
             <p>Описание:</p>
             <p>Город:</p>
-            <p>Последний отзыв о работе:</p>
+            <p *ngIf="currentUser.lastCommentText">Последний отзыв о работе:</p>
+            <p>Навыки, которымы вы обладаете:</p>
+            <p>Навыки, которым хотите учиться:</p>
           </div>
           <div class="col-sm-4">
             <p>{{currentUser.login}}</p>
             <p>{{currentUser.email}}</p>
             <p>{{currentUser.description}}</p>
             <p>{{currentUser.cityName}}</p>
-            <p>{{currentUser.lastCommentText}}</p>
+            <p *ngIf="currentUser.lastCommentText">{{currentUser.lastCommentText}}</p>
+            <p *ngFor="let skill of skillsToTeach">{{skill.name}} </p>
+            <p *ngFor="let skill of skillsToLearn">{{skill.name}}</p>
           </div>
         </div>
 

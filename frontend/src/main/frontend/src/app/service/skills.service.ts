@@ -16,4 +16,8 @@ export class SkillsService {
   getAllSkills(): Observable<any> {
     return this.http.get('api/skills/getAllSkills');
   }
+
+  getUserSkills(userId: number): Observable<any> {
+    return this.http.get('api/skills/getUserSkills/' + userId);
+  }
 }
