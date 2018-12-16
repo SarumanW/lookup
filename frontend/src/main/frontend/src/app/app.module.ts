@@ -26,6 +26,7 @@ import {SkillsService} from './service/skills.service';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import { ModalWindowComponent } from './modal-window/modal-window.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ModalWindowComponent } from './modal-window/modal-window.component';
     RegisterComponent,
     ProfileComponent,
     ChooseSkillsComponent,
-    ModalWindowComponent
+    ModalWindowComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
