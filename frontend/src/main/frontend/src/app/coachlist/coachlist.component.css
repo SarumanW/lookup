@@ -38,13 +38,13 @@
   height: auto;
 }
 
-.coaches-block>.btn {
+.coach-info-inside > .btn {
   height: 100%;
   width: 100%;
   padding: 0;
 }
 
-.coaches-block>.btn:hover {
+.coach-info-inside > .btn:hover {
   background-color: #A3C9A8;
   color: white;
   text-decoration: underline;
@@ -88,7 +88,7 @@
 }
 
 .coach-info-inside span {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
 }
 

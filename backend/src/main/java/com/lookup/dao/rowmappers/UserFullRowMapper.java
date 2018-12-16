@@ -22,6 +22,7 @@ public class UserFullRowMapper implements RowMapper<User> {
         user.setEmail(resultSet.getString(UUSER_EMAIL));
         user.setDescription(resultSet.getString(UUSER_DESCRIPTION));
         user.setCityName(resultSet.getString(UUSER_CITY_NAME));
+        user.setCityId(resultSet.getInt(UUSER_CITY_ID));
         user.setLastCommentText(resultSet.getString(UUSER_LAST_COMMENT_TEXT_ABOUT));
         return user;
     }

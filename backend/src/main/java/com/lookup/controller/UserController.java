@@ -71,5 +71,16 @@ public class UserController {
 
         return new ResponseEntity<>(coaches, HttpStatus.OK);
     }
+
+    @PutMapping
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
+        log.debug("[UserController.updateUser]: Trying to update user '{}'", user.toString());
+
+        User updatedUser = userDao.update(user);
+
+        log.debug("[UserController.updateUser]: Send response body user '{}' and status OK", updatedUser);
+
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
 }
 

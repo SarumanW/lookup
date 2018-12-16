@@ -43,3 +43,7 @@ body {
   border: 1px solid #A3C9A8!important;
 }
 
+body .ui-widget {
+  font-size: 16px;
+}
+

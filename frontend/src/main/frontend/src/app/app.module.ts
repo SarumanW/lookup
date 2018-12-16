@@ -25,6 +25,7 @@ import {ChooseSkillsComponent} from './choose-skills/choose-skills.component';
 import {SkillsService} from './service/skills.service';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import { ModalWindowComponent } from './modal-window/modal-window.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {MessageModule} from 'primeng/message';
     CoachlistComponent,
     RegisterComponent,
     ProfileComponent,
-    ChooseSkillsComponent
+    ChooseSkillsComponent,
+    ModalWindowComponent
   ],
   imports: [
     BrowserModule,

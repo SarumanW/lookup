@@ -1,6 +1,7 @@
 <header>
     <p [routerLink]="['/']">Lookup</p>
     <span *ngIf="!isUserLoggedIn()" [routerLink]="['/coaches']">Тренеры</span>
+    <span *ngIf="!isUserLoggedIn()" [routerLink]="['/profile']">Профиль</span>
     <span *ngIf="isUserLoggedIn()" class="log" [routerLink]="['/login']">Войти</span>
     <span *ngIf="!isUserLoggedIn()" (click)="logout()" class="log" [routerLink]="['/']">Выйти</span>
   <!--TODO take second span as a children in css file without classes-->

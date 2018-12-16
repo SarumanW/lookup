@@ -54,10 +54,10 @@
         </small>
       </div>
 
-      <div class="table-row">
+      <div class="table-row" *ngIf="cities">
         <label for="city">Город</label>
         <div class="city-handler">
-          <p-dropdown name="city" id="city" [options]="cities" filter="true" class="drop" optionLabel="label" [autoWidth]="false"
+          <p-dropdown name="city" id="city" [options]="cities" filter="true" class="drop" optionLabel="name" [autoWidth]="false"
                       [style]="{'width' : '100%'}" [(ngModel)]="selectedCity" (onChange)="changeCity()">
           </p-dropdown>
         </div>

@@ -36,6 +36,7 @@ public class Key {
     public static final String USER_FIND_BY_LOGIN = "user.findByLogin";
     public static final String USER_FIND_COACHES = "user.findCoaches";
     public static final String USER_FIND_FULL_BY_ID = "user.findFullById";
+    public static final String USER_UPDATE="user.update";
 
     //SkillDao
     public static final String SKILL_GET_ALL_SKILLS = "skill.getAllSkills";
