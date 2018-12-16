@@ -52,7 +52,7 @@ export class AccountService {
       .set("endPrice", endPrice.toString());
 
     return this.http
-      .get('api/users/get-coaches', {params : params});
+      .get('api/users/coaches', {params : params});
   }
 
 }

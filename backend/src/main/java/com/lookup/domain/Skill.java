@@ -16,4 +16,5 @@ public class Skill {
     private int userId;
     private int isCoached;
     private int price;
+    private String categoryName;
 }

@@ -22,4 +22,6 @@ public class User {
     private List<Skill> userSkills;
     private List<Chat> userChats;
     private String lastCommentText;
+
+    private int price;
 }

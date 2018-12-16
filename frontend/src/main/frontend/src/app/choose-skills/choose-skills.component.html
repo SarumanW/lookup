@@ -12,11 +12,6 @@
           <p-multiSelect [options]="skills" [(ngModel)]="selectedSkillsToLearn"
                          [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
           <p>Выбранные навыки: {{selectedSkillsToLearn}}</p>
-          <div *ngFor="let skill of selectedSkillsToLearn; let i = index" [attr.data-index]="i" class="table-row">
-            <label>{{skill}}</label>
-            <input type="text" class="form-control" placeholder="Введите цену"
-                   id="{{i}}" name="skillPrice" onblur="addPrice(i)">
-          </div>
         </div>
 
       </div>
@@ -27,6 +22,11 @@
           <p-multiSelect [options]="skills" [(ngModel)]="selectedSkillsToTeach"
                          [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
           <p>Выбранные навыки: {{selectedSkillsToTeach}}</p>
+          <div *ngFor="let skill of selectedSkillsToTeach; let i = index" [attr.data-index]="i" class="table-row">
+            <label>{{skill}}</label>
+            <input type="text" class="form-control" placeholder="Введите цену"
+                   id="{{i}}" name="skillPrice" onblur="addPrice(i, $event)">
+          </div>
         </div>
 
         <!--TODO: add price input for each-->

@@ -6,4 +6,5 @@ export class User {
   public cityId: number;
   public cityName: string;
   public lastCommentText: string;
+  public price: number;
 }

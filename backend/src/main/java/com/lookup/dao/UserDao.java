@@ -12,5 +12,5 @@ public interface UserDao extends Dao<User> {
 
     List<User> findAllCoaches(String cityName, String skillName, int startPrice, int endPrice);
 
-    User findFullByLogin(int id);
+    User findFullById(int id);
 }

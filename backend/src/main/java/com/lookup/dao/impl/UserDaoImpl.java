@@ -2,6 +2,7 @@ package com.lookup.dao.impl;
 
 import com.lookup.dao.AbstractDao;
 import com.lookup.dao.UserDao;
+import com.lookup.dao.rowmappers.CoachRowMapper;
 import com.lookup.dao.rowmappers.UserFullRowMapper;
 import com.lookup.dao.rowmappers.UserRowMapper;
 import com.lookup.domain.User;
@@ -28,6 +29,9 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Autowired
     private UserFullRowMapper userFullRowMapper;
+
+    @Autowired
+    private CoachRowMapper coachRowMapper;
 
     public UserDaoImpl() {
         log = LoggerFactory.getLogger(UserDaoImpl.class);
@@ -67,7 +71,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         log.debug("[UserDaoImpl.findAllCoaches]: Try to get coaches by params '{}' '{}' '{}' '{}'", cityName, skillName, startPrice, endPrice);
 
         List<User> coaches = jdbcTemplate.query(env.getProperty(USER_FIND_COACHES),
-                new Object[]{cityName, skillName, startPrice, endPrice}, userRowMapper);
+                new Object[]{cityName, skillName, startPrice, endPrice}, coachRowMapper);
 
         log.debug("[UserDaoImpl.findAllCoaches]: Coaches found: '{}'", coaches);
 
@@ -75,8 +79,8 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public User findFullByLogin(int id) {
-        log.debug("[UserDaoImpl.findFullByLogin]: Try to find full User by id: '{}'", id);
+    public User findFullById(int id) {
+        log.debug("[UserDaoImpl.findFullById]: Try to find full User by id: '{}'", id);
 
         User user = null;
 
@@ -86,14 +90,14 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                     new Object[]{id, id}, userFullRowMapper);
 
         } catch (EmptyResultDataAccessException e) {
-            log.error("[UserDaoImpl.findFullByLogin]: User with id '{}' not found", id, e);
+            log.error("[UserDaoImpl.findFullById]: User with id '{}' not found", id, e);
             //TODO: throw custom exception
         }catch (DataAccessException e) {
-            log.error("[UserDaoImpl.findFullByLogin]: Query fails by finding full user with id '{}'", id, e);
+            log.error("[UserDaoImpl.findFullById]: Query fails by finding full user with id '{}'", id, e);
             //TODO: throw custom exception
         }
 
-        log.debug("[UserDaoImpl.findFullByLogin]: User with id '{}' was found", id);
+        log.debug("[UserDaoImpl.findFullById]: User with id '{}' was found", id);
 
         return user;
     }

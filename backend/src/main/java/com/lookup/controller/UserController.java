@@ -40,7 +40,7 @@ public class UserController {
     public ResponseEntity<User> getFullUserById(@PathVariable int id) {
         log.debug("[UserController.getFullUserById]: Trying to get full user by id '{}'", id);
 
-        User user = userDao.findFullByLogin(id);
+        User user = userDao.findFullById(id);
 
         log.debug("[UserController.getFullUserById]: Send response body user '{}' and status OK", user.toString());
 
@@ -59,7 +59,6 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    //TODO: pass city name and skill name instead of id to access 2 and more tables
     @GetMapping("/coaches")
     public ResponseEntity<List<User>> getAllCoaches(@RequestParam("cityName") String cityName,
                                                     @RequestParam("skillName") String skillName,

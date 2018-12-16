@@ -1,15 +1,15 @@
 <div class="coach-choose">
-  <div class="coach-choose-inside">
+  <div class="coach-choose-inside" *ngIf="panelAvailable">
     <div class="category">
       <p>Категория</p>
-      <p-dropdown #d1 [options]="categories" filter="true" class="drop" optionLabel="label" [autoWidth]="false"
+      <p-dropdown #d1 [options]="categories" filter="true" class="drop" optionLabel="name" [autoWidth]="false"
                   [style]="{'width':'180px'}" [(ngModel)]="selectedCategory" (onChange)="selectLesson()" (onFocus)="clearFilter(d1)">
       </p-dropdown>
     </div>
 
     <div class="category">
       <p>Занятие</p>
-      <p-dropdown #d2 [options]="shownStudies" filter="true" class="drop" optionLabel="name" [autoWidth]="false" [style]="{'width':'180px'}">
+      <p-dropdown #d2 [options]="shownSkills" filter="true" class="drop" optionLabel="name" [autoWidth]="false" [style]="{'width':'180px'}" [(ngModel)]="selectedSkill">
       </p-dropdown>
     </div>
 
@@ -21,8 +21,12 @@
 
     <div class="category">
       <p>Город</p>
-      <p-dropdown #d4 [options]="cities" filter="true" class="drop" optionLabel="label" [autoWidth]="false" [style]="{'width':'180px'}">
+      <p-dropdown #d4 [options]="cities" filter="true" class="drop" optionLabel="name" [autoWidth]="false" [style]="{'width':'180px'}" [(ngModel)]="selectedCity">
       </p-dropdown>
+    </div>
+
+    <div class="category">
+      <button type="button" class="btn" (click)="findCoaches()">Искать</button>
     </div>
   </div>
 </div>
@@ -52,7 +56,7 @@
             </div>
             <div class="coach-info">
               <div class="coach-info-inside">
-                <span>400 грн/час</span>
+                <span>{{coach.price}} грн/час</span>
               </div>
             </div>
             <div class="coach-info">

@@ -2,8 +2,10 @@ package com.lookup.dao.impl;
 
 import com.lookup.dao.AbstractDao;
 import com.lookup.dao.SkillsDao;
+import com.lookup.dao.rowmappers.SkillRowMapper;
 import com.lookup.domain.Skill;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -18,6 +20,9 @@ import static com.lookup.keys.Key.*;
 @Repository("skillsDao")
 @PropertySource("classpath:sqlDao.properties")
 public class SkillsDaoImpl extends AbstractDao<Skill> implements SkillsDao {
+
+    @Autowired
+    private SkillRowMapper skillRowMapper;
 
     public SkillsDaoImpl() {
         log = LoggerFactory.getLogger(UserDaoImpl.class);
@@ -47,6 +52,18 @@ public class SkillsDaoImpl extends AbstractDao<Skill> implements SkillsDao {
         }
 
         log.debug("[SkillsDaoImpl.insertUserSkills]: Skills for user with id '{}' were inserted", skills.get(0).getUserId());
+    }
+
+    @Override
+    public List<Skill> getAllSkills() {
+        log.debug("[SkillsDaoImpl.getAllSkills]: Try to get all skills ");
+
+        List<Skill> skills = jdbcTemplate.query(env.getProperty(SKILL_GET_ALL_SKILLS),
+                new Object[]{}, skillRowMapper);
+
+        log.debug("[SkillsDaoImpl.getAllSkills]: Skills found: '{}'", skills);
+
+        return skills;
     }
 
     @Override

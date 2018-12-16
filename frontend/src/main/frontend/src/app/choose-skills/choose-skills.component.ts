@@ -3,6 +3,7 @@ import {SelectItem} from "primeng/api";
 import {Constants} from "../domain/Constants";
 import {Skill} from "../domain/Skill";
 import {SkillsService} from "../service/skills.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-choose-skills',
@@ -11,19 +12,24 @@ import {SkillsService} from "../service/skills.service";
 })
 export class ChooseSkillsComponent implements OnInit {
 
+  dbSkills: Skill[] = [];
   skills: SelectItem[] = [];
   selectedSkillsToLearn: string[] = [];
   selectedSkillsToTeach: string[] = [];
   prices: number[] = [];
 
-  constructor(private skillsService: SkillsService) {
+  constructor(private skillsService: SkillsService,
+              private router: Router) {
 
   }
 
   ngOnInit() {
-    Constants.SKILLS.forEach((skill) => {
-      this.skills.push({label: skill.name, value: skill.name});
-    })
+    this.skillsService.getAllSkills().subscribe((skills) => {
+      skills.forEach((skill) => {
+        this.skills.push({label: skill.name, value: skill.name});
+        this.dbSkills.push(skill);
+      })
+    });
   }
 
   addSkills() {
@@ -32,27 +38,28 @@ export class ChooseSkillsComponent implements OnInit {
     let skills: Skill[] = [];
 
     this.selectedSkillsToLearn.forEach((skillName) => {
-      let skill: Skill = Constants.SKILLS.find(skill => skill.name == skillName);
+      let skill: Skill = this.dbSkills.find(skill => skill.name == skillName);
       skill.isCoached = 0;
       skill.userId = userId;
       skills.push(skill);
     });
 
-    this.selectedSkillsToTeach.forEach((skillName) => {
-      let skill: Skill = Constants.SKILLS.find(skill => skill.name == skillName);
+    this.selectedSkillsToTeach.forEach((skillName, index) => {
+      let skill: Skill = this.dbSkills.find(skill => skill.name == skillName);
       skill.isCoached = 1;
       skill.userId = userId;
+      skill.price = this.prices[index];
       skills.push(skill);
     });
 
     this.skillsService.insertUserSkills(skills).subscribe(
       (response) => {
-
+        this.router.navigate(["/profile"]);
       })
   }
 
-  addPrice(){
-
+  addPrice(index: any, event: any){
+    this.prices[index] = event.target.value;
   }
 
 }

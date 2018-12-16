@@ -7,10 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +30,14 @@ public class SkillsController {
         skillsDao.insertUserSkills(skills);
 
         return new ResponseEntity<>(true, HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllSkills")
+    public ResponseEntity<List<Skill>> getAllSkills(){
+        log.debug("[SkillsController.getAllSkills: try to get all skills");
+
+        List<Skill> skills = skillsDao.getAllSkills();
+
+        return new ResponseEntity<>(skills, HttpStatus.OK);
     }
 }
