@@ -12,5 +12,9 @@ public class Chat {
     private int coachId;
     private int studentId;
 
+    private String coachLogin;
+
     private Message lastMessage;
+
+    //get chat list for user
 }

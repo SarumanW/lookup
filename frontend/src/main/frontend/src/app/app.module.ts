@@ -27,6 +27,7 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import { ModalWindowComponent } from './modal-window/modal-window.component';
 import { ChatComponent } from './chat/chat.component';
+import {ChatService} from "./service/chat.service";
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { ChatComponent } from './chat/chat.component';
       multi: true
     },
     AuthService,
-    SkillsService],
+    SkillsService,
+    ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

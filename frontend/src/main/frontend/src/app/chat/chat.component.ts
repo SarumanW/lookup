@@ -5,6 +5,7 @@ import * as $ from 'jquery';
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../domain/User";
 import {Message} from "../domain/Message";
+import {ChatService} from "../service/chat.service";
 
 
 @Component({
@@ -30,7 +31,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   typingMembers: string[] = [];
 
   constructor(private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private chatService: ChatService) {
 
   }
 
@@ -48,53 +50,48 @@ export class ChatComponent implements OnInit, OnDestroy {
       '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
     ];
 
-    this.connect();
+    // this.initializeWebSocketConnection();
 
-//     this.chatService.getMessages(this.chatId).subscribe(
-//       (messages) => {
-//         this.preventMessages = messages;
-//
-//         for (let message of messages) {
-//           let messageElement;
-//           this.color = this.colors[ChatComponent.hashCode(message.senderId.toString()) % 8];
-//           let time = this.getTimeFromDate(message.messageDate);
-//
-//           messageElement = `<li class="chat-message" style="padding-left: 68px;
-//   position: relative;">
-//     <i style="position: absolute;
-//   width: 42px;
-//   height: 42px;
-//   overflow: hidden;
-//   left: 10px;
-//   display: inline-block;
-//   vertical-align: middle;
-//   font-size: 18px;
-//   line-height: 42px;
-//   color: #fff;
-//   text-align: center;
-//   border-radius: 50%;
-//   font-style: normal;
-//   text-transform: uppercase;
-//   background-color:${this.color}";>${message.senderLogin[0]}</i>
-//     <span style="color: #333;
-//   font-weight: 600;">${message.senderLogin}</span>
-//   <span style="color: #333;
-//   font-weight: 600;">${time}</span>
-//     <p style="color: #43464b;">${message.text}</p>
-// </li>`;
-//           $('#messageArea').append(messageElement);
-//         }
-//
-//         $('#messageArea').scrollTop($('#messageArea').prop('scrollHeight'));
-//
-//         this.connect();
-//       }, error => {
-//
-//       });
-  }
+    this.chatService.getMessages(this.chatId).subscribe(
+      (messages) => {
+        this.preventMessages = messages;
 
-  connect() {
-    this.initializeWebSocketConnection();
+        for (let message of messages) {
+          let messageElement;
+          this.color = this.colors[ChatComponent.hashCode(message.senderId.toString()) % 8];
+          let time = this.getTimeFromDate(message.messageDate);
+
+          messageElement = `<li class="chat-message" style="padding-left: 68px;
+                              position: relative;">
+                                <i style="position: absolute;
+                              width: 42px;
+                              height: 42px;
+                              overflow: hidden;
+                              left: 10px;
+                              display: inline-block;
+                              vertical-align: middle;
+                              font-size: 18px;
+                              line-height: 42px;
+                              color: #fff;
+                              text-align: center;
+                              border-radius: 50%;
+                              font-style: normal;
+                              text-transform: uppercase;
+                              background-color:${this.color}";>${message.senderLogin[0]}</i>
+                                <span style="color: #333;
+                              font-weight: 600;">${message.senderLogin}</span>
+                              <span style="color: #333;
+                              font-weight: 600;">${time}</span>
+                                <p style="color: #43464b;">${message.text}</p>
+                            </li>`;
+
+          $('#messageArea').append(messageElement);
+        }
+
+        $('#messageArea').scrollTop($('#messageArea').prop('scrollHeight'));
+
+        this.initializeWebSocketConnection();
+      });
   }
 
   initializeWebSocketConnection() {
@@ -196,15 +193,13 @@ export class ChatComponent implements OnInit, OnDestroy {
     mess.senderId = this.user.id;
     mess.messageDate = this.getCurrentDate();
 
-    this.stompClient.send("/app-chat/send/message/" + this.chatId, {}, JSON.stringify(chatMessage));
+    // this.stompClient.send("/app-chat/send/message/" + this.chatId, {}, JSON.stringify(chatMessage));
 
-    // this.chatService.addMessage(mess).subscribe(
-    //   (message) => {
-    //     this.stompClient.send("/app-chat/send/message/" + this.chatId, {}, JSON.stringify(chatMessage));
-    //   }, error => {
-    //     this.appComponent.showError("Can not send message", "Error");
-    //   }
-    // );
+    this.chatService.addMessage(mess).subscribe(
+      (message) => {
+        this.stompClient.send("/app-chat/send/message/" + this.chatId, {}, JSON.stringify(chatMessage));
+      }
+    );
 
     this.messageText = '';
     this.isUserTypingMessage();
@@ -268,7 +263,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     for (let i = 0; i < name.length; i++) {
       let char = name.charCodeAt(i);
       hash = ((hash << 5) - hash) + char;
-      hash = hash & hash; // Convert to 32bit integer
+      hash = hash & hash;
     }
     return Math.abs(hash);
   }

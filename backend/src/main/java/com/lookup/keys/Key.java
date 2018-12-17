@@ -6,6 +6,8 @@ public class Key {
     public static final String TABLE_UUSER = "uuser";
     public static final String TABLE_USER_SKILL = "user_skill";
     public static final String TABLE_SKILL = "skill";
+    public static final String TABLE_CHAT = "chat";
+    public static final String TABLE_MESSAGE = "message";
 
     //User table
     public static final String UUSER_USER_ID = "user_id";
@@ -32,6 +34,19 @@ public class Key {
     public static final String SKILL_CATEGORY_NAME = "category_name";
     public static final String SKILL_IS_COACHED = "is_coached";
 
+    //Message table
+    public static final String MESSAGE_MESSAGE_ID = "message_id";
+    public static final String MESSAGE_SENDER_ID = "sender_id";
+    public static final String MESSAGE_TEXT = "text";
+    public static final String MESSAGE_CHAT_ID = "chat_id";
+    public static final String MESSAGE_SENT_TIME = "sent_time";
+    public static final String MESSAGE_SENDER_LOGIN = "sender_login";
+
+    //Chat table
+    public static final String CHAT_CHAT_ID = "chat_id";
+    public static final String CHAT_COACH_ID = "coach_id";
+    public static final String CHAT_STUDENT_ID = "student_id";
+
     //UserDao
     public static final String USER_FIND_BY_ID = "user.findById";
     public static final String USER_FIND_BY_LOGIN = "user.findByLogin";
@@ -42,4 +57,7 @@ public class Key {
     //SkillDao
     public static final String SKILL_GET_ALL_SKILLS = "skill.getAllSkills";
     public static final String SKILL_GET_USER_SKILLS = "skill.getUserSkills";
+
+    //ChatDao
+    public static final String CHAT_GET_CHAT_MESSAGES = "chat.getChatMessages";
 }
