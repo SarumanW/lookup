@@ -24,6 +24,15 @@ public class ChatController {
         this.chatDao = chatDao;
     }
 
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Chat>> getChatsForUserId(@PathVariable int userId){
+        log.debug("[ChatController.getChatsForUserId: try to get all chats for user with id {}", userId);
+
+        List<Chat> chats = chatDao.getChatsByStudentId(userId);
+
+        return new ResponseEntity<>(chats, HttpStatus.OK);
+    }
+
     @GetMapping("/chatMessages/{chatId}")
     public ResponseEntity<List<Message>> getChatMessages(@PathVariable int chatId){
         log.debug("[ChatController.getChatMessages: try to get all messages for chat with id {}", chatId);
@@ -35,7 +44,7 @@ public class ChatController {
 
     @PostMapping("/addChat")
     public ResponseEntity<Chat> insertChat(@RequestBody Chat chat){
-        log.debug("[ChatController.insertChat: try to insert chat with");
+        log.debug("[ChatController.insertChat: try to insert chat");
 
         Chat result = chatDao.insert(chat);
 

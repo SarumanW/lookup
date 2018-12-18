@@ -8,6 +8,7 @@ public class Key {
     public static final String TABLE_SKILL = "skill";
     public static final String TABLE_CHAT = "chat";
     public static final String TABLE_MESSAGE = "message";
+    public static final String TABLE_USER_CHAT = "user_chat";
 
     //User table
     public static final String UUSER_USER_ID = "user_id";
@@ -60,4 +61,5 @@ public class Key {
 
     //ChatDao
     public static final String CHAT_GET_CHAT_MESSAGES = "chat.getChatMessages";
+    public static final String CHAT_GET_CHAT_BY_USER_ID = "chat.getChatsByUserId";
 }

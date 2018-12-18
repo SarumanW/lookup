@@ -15,6 +15,4 @@ public class Chat {
     private String coachLogin;
 
     private Message lastMessage;
-
-    //get chat list for user
 }

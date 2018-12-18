@@ -2,6 +2,7 @@ package com.lookup.dao.impl;
 
 import com.lookup.dao.AbstractDao;
 import com.lookup.dao.ChatDao;
+import com.lookup.dao.rowmappers.ChatRowMapper;
 import com.lookup.dao.rowmappers.MessageRowMapper;
 import com.lookup.domain.Chat;
 import com.lookup.domain.Message;
@@ -25,9 +26,12 @@ public class ChatDaoImpl extends AbstractDao<Chat> implements ChatDao {
     @Autowired
     private MessageRowMapper messageRowMapper;
 
+    @Autowired
+    private ChatRowMapper chatRowMapper;
+
     @Override
     public List<Message> getChatMessages(int chatId) {
-        log.debug("[ChatDaoImpl.getChatMessages]: Try to get messages for chat with id {}", chatId);
+        log.debug("[ChatDaoImpl.getChatMessages]: Try to get messages for chat with id '{}'", chatId);
 
         List<Message> messages = jdbcTemplate.query(env.getProperty(CHAT_GET_CHAT_MESSAGES),
                 new Object[]{chatId}, messageRowMapper);
@@ -71,7 +75,46 @@ public class ChatDaoImpl extends AbstractDao<Chat> implements ChatDao {
 
     @Override
     public List<Chat> getChatsByStudentId(int studentId) {
-        return null;
+        log.debug("[ChatDaoImpl.getChatsByStudentId]: Try to get chats for user with id '{}'", studentId);
+
+        List<Chat> chats = jdbcTemplate.query(env.getProperty(CHAT_GET_CHAT_BY_USER_ID),
+                new Object[]{studentId}, chatRowMapper);
+
+        log.debug("[ChatDaoImpl.getChatsByStudentId]: Chats found: '{}'", chats);
+
+        return chats;
+    }
+
+    @Override
+    public boolean insertUserChat(int chatId, int studentId, int coachId) {
+        log.debug("[ChatDaoImpl.insertUserChat]: Try to insert chats wor users '{}' '{}'", studentId, coachId);
+
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate.getDataSource())
+                .withTableName(TABLE_USER_CHAT)
+                .usingGeneratedKeyColumns(UUSER_USER_ID);
+
+        //TODO: try to make user_id primary key
+
+        Map<String, Object> studentParameters = new HashMap<>();
+        studentParameters.put(CHAT_CHAT_ID, chatId);
+        studentParameters.put(UUSER_USER_ID, studentId);
+
+        Map<String, Object> coachParameters = new HashMap<>();
+        studentParameters.put(CHAT_CHAT_ID, chatId);
+        studentParameters.put(UUSER_USER_ID, coachId);
+
+        try {
+            log.debug("[ChatDaoImpl.insertUserChat]: Try to execute statement");
+            simpleJdbcInsert.executeAndReturnKey(studentParameters).intValue();
+            simpleJdbcInsert.executeAndReturnKey(coachParameters).intValue();
+        } catch (DataAccessException e) {
+            log.error("[ChatDaoImpl.insertUserChat]: Query fails by insert user_chat", e);
+            //TODO: throw custom exception
+        }
+
+        log.debug("[ChatDaoImpl.insertUserChat]: User_chat were inserted");
+
+        return true;
     }
 
     @Override
@@ -104,6 +147,8 @@ public class ChatDaoImpl extends AbstractDao<Chat> implements ChatDao {
         }
 
         log.debug("[ChatDaoImpl.insert]: Chat with id '{}' was inserted", model.getChatId());
+
+        this.insertUserChat(model.getChatId(), model.getStudentId(), model.getCoachId());
 
         return model;
     }

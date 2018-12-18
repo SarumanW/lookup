@@ -11,4 +11,6 @@ public interface ChatDao extends Dao<Chat> {
     Message insertMessage(Message message);
 
     List<Chat> getChatsByStudentId(int studentId);
+
+    boolean insertUserChat(int chatId, int studentId, int coachId);
 }

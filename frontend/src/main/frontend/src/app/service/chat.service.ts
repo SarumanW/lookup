@@ -9,7 +9,7 @@ export class ChatService {
   }
 
   getMessages(chatId: number): Observable<any> {
-    return this.http.get('api/chat/chatMessages' + chatId);
+    return this.http.get('api/chat/chatMessages/' + chatId);
   }
 
   addMessage(message: any): Observable<any> {
@@ -18,5 +18,9 @@ export class ChatService {
 
   addChat(chat: any): Observable<any> {
     return this.http.post('api/chat/addChat', chat);
+  }
+
+  getChats(userId: number): Observable<any> {
+    return this.http.get('api/chat/' + userId);
   }
 }
