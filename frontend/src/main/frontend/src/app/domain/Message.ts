@@ -3,6 +3,6 @@ export class Message{
   senderId: number;
   chatId: number;
   text: string;
-  messageDate: string;
+  sentTime: string;
   senderLogin: string;
 }

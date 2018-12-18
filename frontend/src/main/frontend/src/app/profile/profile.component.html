@@ -30,7 +30,9 @@
       </p-tabPanel>
       <p-tabPanel header="Мои чаты" leftIcon="pi pi-inbox">
         <div class="data">
-
+          <div *ngFor="let chat of chats">
+            <p class="chat-href" (click)="openChat(chat.chatId)">{{chat.chatId}}</p>
+          </div>
         </div>
       </p-tabPanel>
       <p-tabPanel header="Моя статистика" leftIcon="pi pi-star">

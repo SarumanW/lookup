@@ -5,6 +5,9 @@ import {MessageService} from "primeng/api";
 import {Constants} from "../domain/Constants";
 import {SkillsService} from "../service/skills.service";
 import {Skill} from "../domain/Skill";
+import {ChatService} from "../service/chat.service";
+import {Chat} from "../domain/Chat";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +19,7 @@ export class ProfileComponent implements OnInit {
   currentUser : User;
   display: boolean = false;
   cities: any[];
+  chats: Chat[] = [];
 
   skillsToLearn: Skill[] = [];
   skillsToTeach: Skill[] = [];
@@ -23,7 +27,9 @@ export class ProfileComponent implements OnInit {
   selectedCity: any;
 
   constructor(private accountService: AccountService,
-              private skillsService: SkillsService) { }
+              private skillsService: SkillsService,
+              private chatService: ChatService,
+              private router: Router) { }
 
   ngOnInit() {
     let userId = JSON.parse(localStorage.getItem("currentUser")).id;
@@ -52,7 +58,11 @@ export class ProfileComponent implements OnInit {
   }
 
   onTabChange(event) {
-    console.log("tab pressed");
+    if(event.index == 1){
+      this.chatService.getChats(this.currentUser.id).subscribe((chats) => {
+          this.chats = chats;
+      })
+    }
   }
 
   updateUser() {
@@ -61,6 +71,10 @@ export class ProfileComponent implements OnInit {
     this.accountService.update(this.currentUser).subscribe((user) => {
       console.log(user);
     })
+  }
+
+  openChat(chatId: number){
+    this.router.navigate(['/chat/' + chatId]);
   }
 
 }

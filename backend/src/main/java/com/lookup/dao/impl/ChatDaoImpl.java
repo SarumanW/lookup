@@ -90,23 +90,20 @@ public class ChatDaoImpl extends AbstractDao<Chat> implements ChatDao {
         log.debug("[ChatDaoImpl.insertUserChat]: Try to insert chats wor users '{}' '{}'", studentId, coachId);
 
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate.getDataSource())
-                .withTableName(TABLE_USER_CHAT)
-                .usingGeneratedKeyColumns(UUSER_USER_ID);
-
-        //TODO: try to make user_id primary key
+                .withTableName(TABLE_USER_CHAT);
 
         Map<String, Object> studentParameters = new HashMap<>();
         studentParameters.put(CHAT_CHAT_ID, chatId);
-        studentParameters.put(UUSER_USER_ID, studentId);
+        studentParameters.put("user_id", studentId);
 
         Map<String, Object> coachParameters = new HashMap<>();
-        studentParameters.put(CHAT_CHAT_ID, chatId);
-        studentParameters.put(UUSER_USER_ID, coachId);
+        coachParameters.put(CHAT_CHAT_ID, chatId);
+        coachParameters.put("user_id", coachId);
 
         try {
             log.debug("[ChatDaoImpl.insertUserChat]: Try to execute statement");
-            simpleJdbcInsert.executeAndReturnKey(studentParameters).intValue();
-            simpleJdbcInsert.executeAndReturnKey(coachParameters).intValue();
+            simpleJdbcInsert.execute(studentParameters);
+            simpleJdbcInsert.execute(coachParameters);
         } catch (DataAccessException e) {
             log.error("[ChatDaoImpl.insertUserChat]: Query fails by insert user_chat", e);
             //TODO: throw custom exception

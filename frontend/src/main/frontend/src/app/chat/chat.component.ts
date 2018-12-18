@@ -191,9 +191,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     mess.chatId = this.chatId;
     mess.text = this.messageText;
     mess.senderId = this.user.id;
-    mess.messageDate = this.getCurrentDate();
-
-    // this.stompClient.send("/app-chat/send/message/" + this.chatId, {}, JSON.stringify(chatMessage));
+    mess.sentTime = this.getCurrentDate();
 
     this.chatService.addMessage(mess).subscribe(
       (message) => {

@@ -8,6 +8,8 @@ import {Router} from "@angular/router";
 import {AccountService} from "../service/account.service";
 import {Category} from "../domain/Category";
 import {Constants} from "../domain/Constants";
+import {ChatService} from "../service/chat.service";
+import {Chat} from "../domain/Chat";
 
 @Component({
   selector: 'app-coachlist',
@@ -31,6 +33,7 @@ export class CoachlistComponent implements OnInit {
 
   constructor(private accountService: AccountService,
               private skillsService: SkillsService,
+              private chatService: ChatService,
               private router: Router) {
 
   }
@@ -69,6 +72,16 @@ export class CoachlistComponent implements OnInit {
                                       this.rangeValues[0], this.rangeValues[1])
       .subscribe((coaches) => {
       this.coaches = coaches;
+    })
+  }
+
+  addChat(coachId: number){
+    let chat = new Chat();
+    chat.studentId = JSON.parse(localStorage.currentUser).id;
+    chat.coachId = coachId;
+
+    this.chatService.addChat(chat).subscribe((chat) => {
+      console.log(chat.chatId);
     })
   }
 
