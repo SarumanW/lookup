@@ -23,4 +23,8 @@ export class ChatService {
   getChats(userId: number): Observable<any> {
     return this.http.get('api/chat/' + userId);
   }
+
+  getAnalytic(word: string): Observable<any> {
+    return this.http.get('api/chat/analytic/' + word);
+  }
 }

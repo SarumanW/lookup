@@ -48,6 +48,10 @@ public class Key {
     public static final String CHAT_COACH_ID = "coach_id";
     public static final String CHAT_STUDENT_ID = "student_id";
 
+    //AnalyticVM
+    public static final String ANALYTIC_SENT_DATE = "sent_date";
+    public static final String ANALYTIC_MESSAGE_COUNT = "message_count";
+
     //UserDao
     public static final String USER_FIND_BY_ID = "user.findById";
     public static final String USER_FIND_BY_LOGIN = "user.findByLogin";
@@ -62,4 +66,5 @@ public class Key {
     //ChatDao
     public static final String CHAT_GET_CHAT_MESSAGES = "chat.getChatMessages";
     public static final String CHAT_GET_CHAT_BY_USER_ID = "chat.getChatsByUserId";
+    public static final String CHAT_GET_MESSAGE_ANALYTIC = "chat.getMessageAnalytic";
 }

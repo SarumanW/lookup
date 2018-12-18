@@ -63,3 +63,8 @@ app-modal-window input {
 .chat-href:hover {
   cursor: pointer;
 }
+
+input {
+  font-size: 16px;
+  height: 32px;
+}

@@ -1,6 +1,7 @@
 package com.lookup.controller;
 
 import com.lookup.dao.ChatDao;
+import com.lookup.domain.AnalyticVM;
 import com.lookup.domain.Chat;
 import com.lookup.domain.Message;
 import org.slf4j.Logger;
@@ -26,7 +27,7 @@ public class ChatController {
 
     @GetMapping("/{userId}")
     public ResponseEntity<List<Chat>> getChatsForUserId(@PathVariable int userId){
-        log.debug("[ChatController.getChatsForUserId: try to get all chats for user with id {}", userId);
+        log.debug("[ChatController.getChatsForUserId: try to get all chats for user with id '{}'", userId);
 
         List<Chat> chats = chatDao.getChatsByStudentId(userId);
 
@@ -35,7 +36,7 @@ public class ChatController {
 
     @GetMapping("/chatMessages/{chatId}")
     public ResponseEntity<List<Message>> getChatMessages(@PathVariable int chatId){
-        log.debug("[ChatController.getChatMessages: try to get all messages for chat with id {}", chatId);
+        log.debug("[ChatController.getChatMessages: try to get all messages for chat with id '{}'", chatId);
 
         List<Message> skills = chatDao.getChatMessages(chatId);
 
@@ -58,5 +59,14 @@ public class ChatController {
         Message result = chatDao.insertMessage(message);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @GetMapping("/analytic/{word}")
+    public ResponseEntity<List<AnalyticVM>> getWordAnalytic(@PathVariable String word){
+        log.debug("[ChatController.getWordAnalytic: try to get analytic for word '{}'", word);
+
+        List<AnalyticVM> analyticVM = chatDao.getWordAnalytic(word);
+
+        return new ResponseEntity<>(analyticVM, HttpStatus.OK);
     }
 }

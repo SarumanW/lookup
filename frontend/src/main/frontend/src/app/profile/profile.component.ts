@@ -20,11 +20,13 @@ export class ProfileComponent implements OnInit {
   display: boolean = false;
   cities: any[];
   chats: Chat[] = [];
+  analytics: any[] = [];
 
   skillsToLearn: Skill[] = [];
   skillsToTeach: Skill[] = [];
 
   selectedCity: any;
+  searchWord: string;
 
   constructor(private accountService: AccountService,
               private skillsService: SkillsService,
@@ -63,6 +65,12 @@ export class ProfileComponent implements OnInit {
           this.chats = chats;
       })
     }
+  }
+
+  getAnalytic(){
+    this.chatService.getAnalytic(this.searchWord).subscribe((result) => {
+      this.analytics = result;
+    })
   }
 
   updateUser() {

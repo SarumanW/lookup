@@ -37,7 +37,14 @@
       </p-tabPanel>
       <p-tabPanel header="Моя статистика" leftIcon="pi pi-star">
         <div class="data">
-
+          <p>Тут вы можете проверить как часто встречается какое-то слово в ваших сообщениях</p>
+          <input type="text" class="form-control" placeholder="Введите слово для поиска"
+                 name="word" [(ngModel)]="searchWord">
+          <button type="button" (click)="getAnalytic()" class="btn btn-primary">Искать</button>
+          <div *ngFor="let analytic of analytics">
+            <p>{{analytic.sentDate}}</p>
+            <p>{{analytic.messageCount}}</p>
+          </div>
         </div>
       </p-tabPanel>
     </p-tabView>

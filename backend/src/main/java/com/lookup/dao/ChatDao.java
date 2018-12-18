@@ -1,5 +1,6 @@
 package com.lookup.dao;
 
+import com.lookup.domain.AnalyticVM;
 import com.lookup.domain.Chat;
 import com.lookup.domain.Message;
 
@@ -13,4 +14,6 @@ public interface ChatDao extends Dao<Chat> {
     List<Chat> getChatsByStudentId(int studentId);
 
     boolean insertUserChat(int chatId, int studentId, int coachId);
+
+    List<AnalyticVM> getWordAnalytic(String word);
 }

@@ -2,13 +2,16 @@ package com.lookup.dao.impl;
 
 import com.lookup.dao.AbstractDao;
 import com.lookup.dao.ChatDao;
+import com.lookup.dao.rowmappers.AnalyticVMRowMapper;
 import com.lookup.dao.rowmappers.ChatRowMapper;
 import com.lookup.dao.rowmappers.MessageRowMapper;
+import com.lookup.domain.AnalyticVM;
 import com.lookup.domain.Chat;
 import com.lookup.domain.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -28,6 +31,9 @@ public class ChatDaoImpl extends AbstractDao<Chat> implements ChatDao {
 
     @Autowired
     private ChatRowMapper chatRowMapper;
+
+    @Autowired
+    private AnalyticVMRowMapper analyticVMRowMapper;
 
     @Override
     public List<Message> getChatMessages(int chatId) {
@@ -87,7 +93,7 @@ public class ChatDaoImpl extends AbstractDao<Chat> implements ChatDao {
 
     @Override
     public boolean insertUserChat(int chatId, int studentId, int coachId) {
-        log.debug("[ChatDaoImpl.insertUserChat]: Try to insert chats wor users '{}' '{}'", studentId, coachId);
+        log.debug("[ChatDaoImpl.insertUserChat]: Try to insert chats for users '{}' '{}'", studentId, coachId);
 
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate.getDataSource())
                 .withTableName(TABLE_USER_CHAT);
@@ -112,6 +118,18 @@ public class ChatDaoImpl extends AbstractDao<Chat> implements ChatDao {
         log.debug("[ChatDaoImpl.insertUserChat]: User_chat were inserted");
 
         return true;
+    }
+
+    @Override
+    public List<AnalyticVM> getWordAnalytic(String word) {
+        log.debug("[ChatDaoImpl.getWordAnalytic]: Try to get analytic for word '{}'", word);
+
+        List<AnalyticVM> analytics = jdbcTemplate.query(env.getProperty(CHAT_GET_MESSAGE_ANALYTIC),
+                new Object[]{word}, analyticVMRowMapper);
+
+        log.debug("[ChatDaoImpl.getWordAnalytic]: Analytic found: '{}'", analytics);
+
+        return analytics;
     }
 
     @Override
