@@ -174,7 +174,19 @@ public class ChatDaoImpl extends AbstractDao<Chat> implements ChatDao {
     }
 
     @Override
-    public Chat delete(Chat model) {
-        return null;
+    public int delete(int chatId) {
+        log.debug("[ChatDaoImpl.delete]: Try to delete chat with id '{}'", chatId);
+
+        int result = 0;
+
+        try {
+            result = jdbcTemplate.update(env.getProperty(CHAT_DELETE), chatId);
+        } catch (DataAccessException e) {
+            log.error("[ChatDaoImpl.delete]: Query fails by deleting chat with id '{}'", chatId, e);
+        }
+
+        log.debug("[ChatDaoImpl.delete]: Deleting chat with id '{}' was successful", chatId);
+
+        return chatId;
     }
 }

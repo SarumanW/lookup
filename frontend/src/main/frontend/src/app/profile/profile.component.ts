@@ -85,4 +85,14 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['/chat/' + chatId]);
   }
 
+  deleteChat(chat: Chat) {
+    this.chatService.deleteChat(chat.chatId).subscribe(() => {
+      const index: number = this.chats.indexOf(chat);
+
+      if (index !== -1) {
+        this.chats.splice(index, 1);
+      }
+    })
+  }
+
 }

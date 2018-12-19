@@ -67,4 +67,5 @@ public class Key {
     public static final String CHAT_GET_CHAT_MESSAGES = "chat.getChatMessages";
     public static final String CHAT_GET_CHAT_BY_USER_ID = "chat.getChatsByUserId";
     public static final String CHAT_GET_MESSAGE_ANALYTIC = "chat.getMessageAnalytic";
+    public static final String CHAT_DELETE = "chat.delete";
 }

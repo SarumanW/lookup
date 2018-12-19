@@ -68,3 +68,56 @@ input {
   font-size: 16px;
   height: 32px;
 }
+
+.edit-profile-btn {
+  padding: 7px 12px;
+  margin-top: 20px;
+  margin-left: auto;
+}
+
+.col-sm-6.titles p {
+  font-weight: 700;
+}
+
+.row {
+  max-width: 800px;
+}
+
+.modal-title {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.modal-header:after,
+.modal-header:before{
+  content: none;
+}
+
+.chats p {
+  background-color: #eee;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+table {
+  width: 300px;
+}
+td {
+  padding: 10px 20px;
+  border-bottom: 1px solid #555;
+}
+tr:nth-child(2n) td {
+  background-color: #eee;
+}
+
+.chat-div {
+  position: relative;
+}
+
+.chat-div img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 40px;
+}

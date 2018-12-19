@@ -7,5 +7,5 @@ public interface Dao<T> {
 
     T update(T model);
 
-    T delete(T model);
+    int delete(int id);
 }

@@ -27,4 +27,8 @@ export class ChatService {
   getAnalytic(word: string): Observable<any> {
     return this.http.get('api/chat/analytic/' + word);
   }
+
+  deleteChat(chatId: number): Observable<any>{
+    return this.http.delete('api/chat/delete/' + chatId);
+  }
 }

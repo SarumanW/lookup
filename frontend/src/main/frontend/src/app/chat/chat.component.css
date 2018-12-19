@@ -22,6 +22,10 @@ body:before {
 
 .btn {
   margin-left: 5px;
+  background-color: #528859;
+  color: white;
+  font-size: 16px;
+  border: #528859;
 }
 
 .clearfix:after {
@@ -37,12 +41,12 @@ body:before {
 .form-control {
   width: 100%;
   min-height: 38px;
-  font-size: 15px;
+  font-size: 16px;
   border: 1px solid #c8c8c8;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
 input {
@@ -207,4 +211,19 @@ a {
   color: #777;
   font-size: 14px;
   word-wrap: break-word;
+}
+
+.main-content {
+  height: calc(100vh - 80px);
+  margin: 0;
+  background-color: #edeff0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

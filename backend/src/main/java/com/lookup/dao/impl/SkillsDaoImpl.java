@@ -98,7 +98,7 @@ public class SkillsDaoImpl extends AbstractDao<Skill> implements SkillsDao {
     }
 
     @Override
-    public Skill delete(Skill model) {
-        return null;
+    public int delete(int model) {
+        return 0;
     }
 }

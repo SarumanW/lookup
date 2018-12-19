@@ -3,7 +3,7 @@
     <p-tabView (onChange)="onTabChange($event)">
       <p-tabPanel header="Мои данные" leftIcon="pi pi pi-user">
         <div class="data row" *ngIf="currentUser && skillsToTeach && skillsToLearn">
-          <div class="col-sm-4">
+          <div class="col-sm-6 titles">
             <p>Логин:</p>
             <p>Почта:</p>
             <p>Описание:</p>
@@ -12,7 +12,7 @@
             <p>Навыки, которымы вы обладаете:</p>
             <p>Навыки, которым хотите учиться:</p>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-6">
             <p>{{currentUser.login}}</p>
             <p>{{currentUser.email}}</p>
             <p>{{currentUser.description}}</p>
@@ -21,30 +21,35 @@
             <p *ngFor="let skill of skillsToTeach">{{skill.name}} </p>
             <p *ngFor="let skill of skillsToLearn">{{skill.name}}</p>
           </div>
+          <button type="button" (click)="modal.show()" class="btn btn-primary edit-profile-btn">
+            Редактировать
+          </button>
         </div>
 
-        <button type="button" (click)="modal.show()" class="btn btn-primary">
-          Редактировать
-        </button>
 
       </p-tabPanel>
       <p-tabPanel header="Мои чаты" leftIcon="pi pi-inbox">
-        <div class="data">
-          <div *ngFor="let chat of chats">
+        <div class="data chats">
+          <div class="chat-div" *ngFor="let chat of chats">
             <p class="chat-href" (click)="openChat(chat.chatId)">{{chat.chatId}}</p>
+            <img class="close-btn" src="../../assets/close.svg" (click)="deleteChat(chat)" alt="">
           </div>
         </div>
       </p-tabPanel>
       <p-tabPanel header="Моя статистика" leftIcon="pi pi-star">
         <div class="data">
-          <p>Тут вы можете проверить как часто встречается какое-то слово в ваших сообщениях</p>
-          <input type="text" class="form-control" placeholder="Введите слово для поиска"
-                 name="word" [(ngModel)]="searchWord">
-          <button type="button" (click)="getAnalytic()" class="btn btn-primary">Искать</button>
-          <div *ngFor="let analytic of analytics">
-            <p>{{analytic.sentDate}}</p>
-            <p>{{analytic.messageCount}}</p>
+          <h2 class="font-weight-bold mb-4">Тут вы можете проверить как часто встречается какое-то слово в ваших сообщениях</h2>
+          <div class="d-flex align-items-center w-50">
+            <input type="text" class="flex-1 form-control" placeholder="Введите слово для поиска"
+                   name="word" [(ngModel)]="searchWord">
+            <button type="button" (click)="getAnalytic()" class="btn btn-primary ml-2">Искать</button>
           </div>
+          <table class="mt-2">
+            <tr *ngFor="let analytic of analytics">
+              <td>{{analytic.sentDate}}</td>
+              <td>{{analytic.messageCount}}</td>
+            </tr>
+          </table>
         </div>
       </p-tabPanel>
     </p-tabView>

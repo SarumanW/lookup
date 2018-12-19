@@ -47,3 +47,12 @@ body .ui-widget {
   font-size: 16px;
 }
 
+body .ui-widget-content p {
+  margin: 20px;
+  padding: 0 10px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+body .ui-tabview .ui-tabview-panels .ui-tabview-panel {
+  padding: 20px 0;
+}

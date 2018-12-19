@@ -181,7 +181,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public User delete(User model) {
-        return null;
+    public int delete(int model) {
+        return 0;
     }
 }

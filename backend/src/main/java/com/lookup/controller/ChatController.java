@@ -69,4 +69,13 @@ public class ChatController {
 
         return new ResponseEntity<>(analyticVM, HttpStatus.OK);
     }
+
+    @DeleteMapping("/delete/{chatId}")
+    public ResponseEntity<Boolean> deleteChat(@PathVariable int chatId) {
+        log.debug("[ChatController.deleteChat: try to delete chat with id '{}'", chatId);
+
+        chatDao.delete(chatId);
+
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
 }
